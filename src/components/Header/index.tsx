@@ -4,8 +4,6 @@ import {
     Toolbar,
     Typography,
     CssBaseline,
-    Box,
-    Container,
     IconButton,
     Fab,
 } from '@mui/material';
@@ -14,11 +12,11 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 import ScrollTop from './ScrollTop';
 import HideOnScroll from './HideOnScroll';
+import useHeaderHeight from '../../hooks/useHeaderHeight';
 
 
 const APP_NAME = 'My App';
 const APP_NAME_VARIANT = 'h6';
-const PAGE_MARGIN_VERTICAL = 2;
 
 
 interface Props {
@@ -34,6 +32,8 @@ export const Header = ({
     children,
 }: Props) => {
     const headerAnchorRef = useRef<HTMLDivElement>(null);
+    const headerHeight = useHeaderHeight();
+
     const onMenuClick = () => console.log('TODO: Implement me!');
 
     return (
@@ -42,7 +42,7 @@ export const Header = ({
 
             <HideOnScroll enable={ enableHideOnScroll }>
                 <AppBar>
-                    <Toolbar>
+                    <Toolbar style={{ height: headerHeight }}>
                         <IconButton aria-label='menu'
                             edge    ='start'
                             color   ='inherit'
@@ -57,13 +57,9 @@ export const Header = ({
             </HideOnScroll>
 
             {/* This guantees the page always treats a Header as present */}
-            <Toolbar ref={headerAnchorRef} />
+            <Toolbar ref={headerAnchorRef} style={{ height: headerHeight }} />
 
-            <Container>
-                <Box sx={{ my: PAGE_MARGIN_VERTICAL }}>
-                    { children }
-                </Box>
-            </Container>
+            { children }
 
             { enableScrollTop && (
                 <ScrollTop headerRef={headerAnchorRef}>
@@ -72,7 +68,6 @@ export const Header = ({
                     </Fab>
                 </ScrollTop>
             )}
-
         </>
     );
 };

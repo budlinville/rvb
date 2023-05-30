@@ -1,5 +1,13 @@
 import { ReactElement } from "react";
 import Header from "./Header";
+import useWindowHeight from "../hooks/useWindowHeight";
+import useHeaderHeight from "../hooks/useHeaderHeight";
+
+
+export type PageT = 'page' | 'flex-page';
+
+
+//----------------------------------------------------------------------------------------------------------------------
 
 interface PageProps {
     children: ReactElement;
@@ -7,12 +15,26 @@ interface PageProps {
 
 const Page = ({ children }: PageProps) => {
     return (
-        <div>
-            <Header>
-                { children }
-            </Header>
-        </div>
+        <Header>
+            { children }
+        </Header>
     );
 }
 
 export const withPage = (component: ReactElement) => (<Page>{ component }</Page>);
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
+const FlexPage = ({ children }: PageProps) => {
+    const pageHeight = useWindowHeight() - useHeaderHeight();
+    return (
+        <Header>
+            <div style={{ display: 'flex', height: pageHeight }}>
+                { children }
+            </div>
+        </Header>
+    );
+}
+
+export const withFlexPage = (component: ReactElement) => (<FlexPage>{ component }</FlexPage>);

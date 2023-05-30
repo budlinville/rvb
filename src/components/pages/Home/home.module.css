@@ -1,0 +1,21 @@
+.buttonContainer {
+    flex: 1;
+    display: flex;
+}
+
+.button {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 2rem;
+    /* text-align: center; */
+    font-size: 16px;
+}
+
+@media screen and (max-width: 800px) {
+    .buttonContainer {
+        flex-direction: column;
+    }
+}
