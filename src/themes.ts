@@ -14,8 +14,6 @@ const commonProperties = (mode: PaletteMode): ThemeOptions => ({
                         ? { track: grey[200], thumb: grey[400], active: grey[500] }
                         : undefined
                 ),
-                //scrollbarWidth for Firefox
-                scrollbarWidth: "revert",
             },
         },
     },
