@@ -1,0 +1,19 @@
+:root {
+    --HEADER_HEIGHT: 4rem;
+}
+
+.header {
+    position: fixed;
+    background-color: blue;
+    height: var(--HEADER_HEIGHT);
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.headerShadow {
+    height: var(--HEADER_HEIGHT);
+    top: 0;
+    left: 0;
+    right: 0;
+}
