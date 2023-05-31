@@ -15,7 +15,7 @@ import HideOnScroll from './HideOnScroll';
 import useHeaderHeight from '../../hooks/useHeaderHeight';
 
 
-const APP_NAME = 'My App';
+const APP_NAME = 'Red Team VS Blue Team';
 const APP_NAME_VARIANT = 'h6';
 
 

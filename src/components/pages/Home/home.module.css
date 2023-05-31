@@ -1,16 +1,22 @@
 :root {
-    --BUTTON-HEIGHT: 25rem;
-    --BUTTON-WIDTH: 25rem;
-    --BUTTON-OFFSET: 12px;
+    --BUTTON-HEIGHT: 22rem;
+    --BUTTON-WIDTH: 22rem;
+    --BUTTON-OFFSET: 20px;
     --BORDER-RADIUS: 20%;
+
+    --LIGHT-BLUE: rgb(60, 60, 255);
     --BLUE: rgb(30, 30, 255);
     --DARK-BLUE: rgb(0, 0, 150);
-    --DARKEST-BLUE: rgb(0, 0, 100);
+    --DARKEST-BLUE: rgb(0, 0, 70);
     --BLUE-SHADOW: rgb(0, 0, 40);
+    --BLUE-BUTTON-GRADIENT: radial-gradient(var(--LIGHT-BLUE), var(--BLUE) 20%, var(--DARK-BLUE) 90%);
+
+    --LIGHT-RED: rgb(255, 60, 60);
     --RED: rgb(255, 30, 30);
     --DARK-RED: rgb(150, 0, 0);
-    --DARKEST-RED: rgb(100, 0, 0);
+    --DARKEST-RED: rgb(70, 0, 0);
     --RED-SHADOW: rgb(40, 0, 0);
+    --RED-BUTTON-GRADIENT: radial-gradient(var(--LIGHT-RED), var(--RED) 20%, var(--DARK-RED) 90%);
 }
 
 .buttonContainer {
@@ -113,11 +119,11 @@
 }
 
 .front.red {
-    background: var(--RED);
+    background: var(--RED-BUTTON-GRADIENT);
 }
 
 .front.blue {
-    background: var(--BLUE);
+    background: var(--BLUE-BUTTON-GRADIENT);
 }
 
 .pushable:hover {

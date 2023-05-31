@@ -10,11 +10,10 @@ interface PageOptionsT {
 }
 
 
-const route = (path: string, component: ReactElement, options: PageOptionsT) => (
-    <Route path={ path } Component={
-        () => options.pageType === 'page' ? withPage(component) : withFlexPage(component)
-    } />
-);
+const route = (path: string, component: ReactElement, options: PageOptionsT) => {
+    const page = options.pageType === 'page' ? withPage : withFlexPage;
+    return <Route path={ path } Component={ () => page(component) } />;
+};
 
 
 const Router = () => {
