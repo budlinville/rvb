@@ -1,7 +1,7 @@
 :root {
     --BUTTON-HEIGHT: 25rem;
     --BUTTON-WIDTH: 25rem;
-    --BUTTON-OFFSET: 4px;
+    --BUTTON-OFFSET: 12px;
     --BORDER-RADIUS: 20%;
 }
 
@@ -40,8 +40,8 @@
     border-radius: var(--BORDER-RADIUS);
     background: hsl(0deg 0% 0% / 0.75);
     will-change: transform;
-    transform: translateY(2px);
-    filter: blur(3px);
+    transform: translateY(calc(var(--BUTTON-OFFSET) / 2));
+    filter: blur(calc(var(--BUTTON-OFFSET) / 2));
     transition:
         transform
         600ms
@@ -90,7 +90,7 @@
 }
 
 .pushable:hover .front {
-    transform: translateY(-6px);
+    transform: translateY(calc( -3 * var(--BUTTON-OFFSET) / 2));
     transition:
         transform
         250ms
@@ -98,7 +98,7 @@
 }
 
 .pushable:active .front {
-    transform: translateY(-2px);
+    transform: translateY(calc(-1 * var(--BUTTON-OFFSET) / 2));
     transition: transform 34ms;
 }
 
@@ -111,7 +111,7 @@
 }
 
 .pushable:active .shadow {
-    transform: translateY(1px);
+    transform: translateY(calc(var(--BUTTON-OFFSET) / 4));
     transition: transform 34ms;
 }
 
