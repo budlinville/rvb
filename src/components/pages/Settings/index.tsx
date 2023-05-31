@@ -1,8 +1,27 @@
+import classes from './settings.module.css';
+
+import { useLocalStorage } from "usehooks-ts";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Switch from "@mui/material/Switch";
+import Typography from "@mui/material/Typography";
+
+import { DARK_MODE } from '../../../local-storage/keys';
+
 const Settings = () => {
+    const [isDarkTheme, setDarkTheme] = useLocalStorage(DARK_MODE, true);
+
     return (
-        <div>
-            <h1>Settings</h1>
-        </div>
+        <Container>
+            <Box sx={{ my: 2 }}>
+                <Typography variant="h3" component="div"> Settings </Typography>
+                    <div className={classes.themeSwitchContainer}>
+                        <Typography variant="h5" component="div"> LIGHT </Typography>
+                            <Switch checked={isDarkTheme} onChange={ () => setDarkTheme(prev => !prev) }/>
+                        <Typography variant="h5" component="div"> DARK </Typography>
+                    </div>
+            </Box>
+        </Container>
     );
 };
 

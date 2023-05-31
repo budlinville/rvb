@@ -8,4 +8,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+
+    --THEME-TRANSITION: all 0.25s ease-in-out;
+}
+
+body {
+    transition: var(--THEME-TRANSITION);
 }

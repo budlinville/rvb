@@ -3,7 +3,7 @@ import darkScrollbar from '@mui/material/darkScrollbar';
 import { PaletteMode } from '@mui/material';
 import { grey } from "@mui/material/colors";
 
-
+import { DARK_MODE } from './local-storage/keys';
 
 const commonProperties = (mode: PaletteMode): ThemeOptions => ({
     components: {
@@ -37,7 +37,16 @@ const darkOptions: ThemeOptions = {
         // primary:    { main: '#181818' },
         // secondary:  { main: '#2f2f2f' },
     },
-    ...commonProperties('dark')
+    ...commonProperties('dark'),
+    overrides: {
+        MuiCssBaseline: {
+          '@global': {
+            body: {
+              transition: 'all 0.3s linear',
+            },
+          },
+        },
+      },
 };
 
 export const dark = createTheme(darkOptions);
