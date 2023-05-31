@@ -1,8 +1,13 @@
+import { ReactElement } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import Home from './components/pages/Home';
 import { PageT, withFlexPage, withPage } from './components/Page';
-import { ReactElement } from 'react';
+
+import Home, { HOME_PATH } from './components/pages/Home';
+import About, { ABOUT_PATH } from './components/pages/About';
+import Support, { SUPPORT_PATH } from './components/pages/Support';
+import Stats, { STATS_PATH } from './components/pages/Stats';
+import Settings, { SETTINGS_PATH } from './components/pages/Settings';
 
 
 interface PageOptionsT {
@@ -16,11 +21,18 @@ const route = (path: string, component: ReactElement, options: PageOptionsT) => 
 };
 
 
+//----------------------------------------------------------------------------------------------------------------------
+
+
 const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
-                { route('/', <Home />, { pageType: 'flex-page'} ) }
+                { route(HOME_PATH,      <Home />,       { pageType: 'flex-page'}) }
+                { route(ABOUT_PATH,     <About />,      { pageType: 'flex-page'}) }
+                { route(SUPPORT_PATH,   <Support />,    { pageType: 'flex-page'}) }
+                { route(STATS_PATH,     <Stats />,      { pageType: 'flex-page'}) }
+                { route(SETTINGS_PATH,  <Settings />,   { pageType: 'flex-page'}) }
             </Routes>
         </BrowserRouter>
     );

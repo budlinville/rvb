@@ -1,4 +1,4 @@
-import { ReactElement, useRef } from 'react';
+import { ReactElement, useRef, useState } from 'react';
 import {
     AppBar,
     Toolbar,
@@ -13,6 +13,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import ScrollTop from './ScrollTop';
 import HideOnScroll from './HideOnScroll';
 import useHeaderHeight from '../../hooks/useHeaderHeight';
+import SideDrawer from './SideDrawer';
 
 
 const APP_NAME = 'Red Team VS Blue Team';
@@ -31,10 +32,12 @@ export const Header = ({
     enableScrollTop=true,
     children,
 }: Props) => {
+    const [drawerOpen, setDrawerOpen] = useState(false);
+
     const headerAnchorRef = useRef<HTMLDivElement>(null);
     const headerHeight = useHeaderHeight();
 
-    const onMenuClick = () => console.log('TODO: Implement me!');
+    const onMenuClick = () => setDrawerOpen(true);
 
     return (
         <>
@@ -68,6 +71,8 @@ export const Header = ({
                     </Fab>
                 </ScrollTop>
             )}
+
+            <SideDrawer open={drawerOpen} onClose={ () => setDrawerOpen(false)} />
         </>
     );
 };

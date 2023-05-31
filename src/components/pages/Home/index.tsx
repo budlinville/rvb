@@ -17,3 +17,4 @@ const Home = ({ }: HomeProps) => {
 }
 
 export default Home;
+export const HOME_PATH = '/';
