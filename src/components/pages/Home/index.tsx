@@ -10,8 +10,8 @@ interface HomeProps {
 const Home = ({ }: HomeProps) => {
     return (
         <div className={classes.buttonContainer}>
-            <Button> Red Team </Button>
-            <Button> Blue Team </Button>
+            <Button type='red'> Red Team </Button>
+            <Button type='blue'> Blue Team </Button>
         </div>
     );
 }

@@ -3,6 +3,12 @@
     --BUTTON-WIDTH: 25rem;
     --BUTTON-OFFSET: 12px;
     --BORDER-RADIUS: 20%;
+    --BLUE: rgb(30, 30, 255);
+    --DARK-BLUE: rgb(0, 0, 150);
+    --DARKEST-BLUE: rgb(0, 0, 100);
+    --RED: rgb(255, 30, 30);
+    --DARK-RED: rgb(150, 0, 0);
+    --DARKEST-RED: rgb(100, 0, 0);
 }
 
 .buttonContainer {
@@ -55,12 +61,25 @@
     width: 100%;
     height: 100%;
     border-radius: var(--BORDER-RADIUS);
+}
+
+.edge.red {
     background: linear-gradient(
         to left,
-        hsl(340deg 100% 16%) 0%,
-        hsl(340deg 100% 32%) 30%,
-        hsl(340deg 100% 32%) 70%,
-        hsl(340deg 100% 16%) 100%
+        var(--DARKEST-RED) 0%,
+        var(--DARK-RED) 30%,
+        var(--DARK-RED) 70%,
+        var(--DARKEST-RED) 100%
+    );
+}
+
+.edge.blue {
+    background: linear-gradient(
+        to left,
+        var(--DARKEST-BLUE) 0%,
+        var(--DARK-BLUE) 30%,
+        var(--DARK-BLUE) 70%,
+        var(--DARKEST-BLUE) 100%
     );
 }
 
@@ -76,13 +95,20 @@
     border-radius: var(--BORDER-RADIUS);
     font-size: 1.25rem;
     color: white;
-    background: hsl(345deg 100% 47%);
     will-change: transform;
     transform: translateY(calc(var(--BUTTON-OFFSET) * -1));
     transition:
         transform
         600ms
         cubic-bezier(.3, .7, .4, 1);
+}
+
+.front.red {
+    background: var(--RED);
+}
+
+.front.blue {
+    background: var(--BLUE);
 }
 
 .pushable:hover {
