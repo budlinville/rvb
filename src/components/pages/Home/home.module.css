@@ -108,7 +108,6 @@
 
     position: relative;
     border-radius: var(--BORDER-RADIUS);
-    font-size: 1.25rem;
     color: white;
     will-change: transform;
     transform: translateY(calc(var(--BUTTON-OFFSET) * -1));
@@ -158,4 +157,20 @@
 
 .pushable:focus:not(:focus-visible) {
     outline: none;
+}
+
+.textContainer {
+    font-size: 3rem;
+    font-family: Futura;
+    font-weight: 600;
+}
+
+.textContainer.red {
+    color: rgb(180, 10, 10);
+    text-shadow: 1px 1px 0px rgb(250, 20, 20), -1px -1px 0px rgb(120, 0, 0);
+}
+
+.textContainer.blue {
+    color: rgb(10, 10, 180);
+    text-shadow: 1px 1px 0px rgb(40, 40, 250), -1px -1px 0px rgb(0, 0, 100);
 }
