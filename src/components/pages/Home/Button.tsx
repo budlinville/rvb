@@ -23,9 +23,9 @@ const Button = ({ children, type }: ButtonProps) => {
 
     return (
         <button className={classes.pushable} onMouseDown={onMouseDownHandler}>
-            <span className={classes.shadow} />
-            <span className={`${classes.edge} ${colorClassName}`} />
-            <span className={`${classes.front} ${colorClassName}`}>
+            <span className={`${ classes.shadow }   ${ colorClassName }`} />
+            <span className={`${ classes.edge }     ${ colorClassName }`} />
+            <span className={`${ classes.front }    ${ colorClassName }`}>
                 { children }
             </span>
         </button>
