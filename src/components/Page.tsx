@@ -8,7 +8,6 @@ export type PageT = 'page' | 'flex-page';
 
 
 //----------------------------------------------------------------------------------------------------------------------
-
 interface PageProps {
     children: ReactElement;
 };
@@ -25,7 +24,6 @@ export const withPage = (component: ReactElement) => (<Page>{ component }</Page>
 
 
 //----------------------------------------------------------------------------------------------------------------------
-
 const FlexPage = ({ children }: PageProps) => {
     const pageHeight = useWindowHeight() - useHeaderHeight();
     return (

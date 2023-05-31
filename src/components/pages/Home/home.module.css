@@ -9,14 +9,20 @@
     --DARK-BLUE: rgb(0, 0, 150);
     --DARKEST-BLUE: rgb(0, 0, 70);
     --BLUE-SHADOW: rgb(0, 0, 40);
-    --BLUE-BUTTON-GRADIENT: radial-gradient(var(--LIGHT-BLUE), var(--BLUE) 20%, var(--DARK-BLUE) 90%);
+    --BLUE-TEXT: rgb(10, 10, 180);
+    --BLUE-TEXT-ACCENT-LIGHT: rgb(40, 40, 250);
+    --BLUE-TEXT-ACCENT-DARK: rgb(0, 0, 100);
+    --BLUE-BUTTON-GRADIENT: radial-gradient(var(--LIGHT-BLUE), var(--BLUE) 30%, var(--DARK-BLUE) 90%);
 
     --LIGHT-RED: rgb(255, 60, 60);
     --RED: rgb(255, 30, 30);
     --DARK-RED: rgb(150, 0, 0);
     --DARKEST-RED: rgb(70, 0, 0);
     --RED-SHADOW: rgb(40, 0, 0);
-    --RED-BUTTON-GRADIENT: radial-gradient(var(--LIGHT-RED), var(--RED) 20%, var(--DARK-RED) 90%);
+    --RED-TEXT: rgb(180, 10, 10);
+    --RED-TEXT-ACCENT-LIGHT: rgb(250, 20, 20);
+    --RED-TEXT-ACCENT-DARK: rgb(120, 0, 0);
+    --RED-BUTTON-GRADIENT: radial-gradient(var(--LIGHT-RED), var(--RED) 30%, var(--DARK-RED) 90%);
 }
 
 .buttonContainer {
@@ -166,11 +172,11 @@
 }
 
 .textContainer.red {
-    color: rgb(180, 10, 10);
-    text-shadow: 1px 1px 0px rgb(250, 20, 20), -1px -1px 0px rgb(120, 0, 0);
+    color: var(--RED-TEXT);
+    text-shadow: 1px 1px 0px var(--RED-TEXT-ACCENT-LIGHT), -1px -1px 0px var(--RED-TEXT-ACCENT-DARK);
 }
 
 .textContainer.blue {
-    color: rgb(10, 10, 180);
-    text-shadow: 1px 1px 0px rgb(40, 40, 250), -1px -1px 0px rgb(0, 0, 100);
+    color: var(--BLUE-TEXT);
+    text-shadow: 1px 1px 0px var(--BLUE-TEXT-ACCENT-LIGHT), -1px -1px 0px var(--BLUE-TEXT-ACCENT-DARK);
 }
