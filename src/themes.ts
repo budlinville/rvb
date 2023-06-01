@@ -3,7 +3,21 @@ import darkScrollbar from '@mui/material/darkScrollbar';
 import { PaletteMode } from '@mui/material';
 import { grey } from "@mui/material/colors";
 
-import { DARK_MODE } from './local-storage/keys';
+
+// These are defined in home.module.css
+const RED           = getComputedStyle(document.documentElement).getPropertyValue('--RED');
+const DARK_RED      = getComputedStyle(document.documentElement).getPropertyValue('--DARK-RED');
+const LIGHT_RED     = getComputedStyle(document.documentElement).getPropertyValue('--LIGHT-RED');
+const BLUE          = getComputedStyle(document.documentElement).getPropertyValue('--BLUE');
+const DARK_BLUE     = getComputedStyle(document.documentElement).getPropertyValue('--DARK-BLUE');
+const LIGHT_BLUE    = getComputedStyle(document.documentElement).getPropertyValue('--LIGHT-BLUE');
+
+const primary   = { main: RED,  dark: DARK_RED,  light: LIGHT_RED };
+const secondary = { main: BLUE, dark: DARK_BLUE, light: LIGHT_BLUE };
+
+
+//----------------------------------------------------------------------------------------------------------------------
+
 
 const commonProperties = (mode: PaletteMode): ThemeOptions => ({
     components: {
@@ -19,34 +33,24 @@ const commonProperties = (mode: PaletteMode): ThemeOptions => ({
     },
 });
 
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
 const lightOptions: ThemeOptions = {
-    palette: {
-        mode: 'light',
-        // primary:    { main: '#efefef' },
-        // secondary:  { main: '#e8e8e8' },
-    },
+    palette: { mode: 'light', primary, secondary },
     ...commonProperties('light')
 };
 
 export const light = createTheme(lightOptions);
 
 
+//----------------------------------------------------------------------------------------------------------------------
+
+
 const darkOptions: ThemeOptions = {
-    palette: {
-        mode: 'dark',
-        // primary:    { main: '#181818' },
-        // secondary:  { main: '#2f2f2f' },
-    },
+    palette: { mode: 'dark', primary, secondary },
     ...commonProperties('dark'),
-    overrides: {
-        MuiCssBaseline: {
-          '@global': {
-            body: {
-              transition: 'all 0.3s linear',
-            },
-          },
-        },
-      },
 };
 
 export const dark = createTheme(darkOptions);
