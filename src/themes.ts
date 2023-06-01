@@ -3,6 +3,7 @@ import darkScrollbar from '@mui/material/darkScrollbar';
 import { PaletteMode } from '@mui/material';
 import { grey } from "@mui/material/colors";
 
+import './index.css';
 
 // These are defined in index.css
 const RED           = getComputedStyle(document.documentElement).getPropertyValue('--RED');
