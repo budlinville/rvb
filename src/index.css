@@ -11,6 +11,7 @@
 
     --THEME-TRANSITION: all 0.25s ease-in-out;
 
+    --LIGHTEST-BLUE: rgb(120, 120, 255);
     --LIGHT-BLUE: rgb(60, 60, 255);
     --BLUE: rgb(30, 30, 255);
     --DARK-BLUE: rgb(0, 0, 150);

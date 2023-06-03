@@ -1,44 +1,59 @@
+:root {
+    /* These will get reset in App.tsx for dark mode */
+    --AMPLIFY-PRIMARY: var(--DARK-BLUE);
+    --AMPLIFY-INACTIVE-TAB-COLOR: var(--LIGHTEST-RED);
+    --AMPLIFY-INACTIVE-TAB-BACKGROUND: #f1f1f1;
+    --AMPLIFY-PAGE-BACKGROUND: #cbcbcb;
+    --AMPLIFY-FORM-BACKGROUND: white;
+    --AMPLIFY-SECONDARY: var(--LIGHTEST-RED);
+}
+
 :root, [data-amplify-theme] {
-  --MY-PRIMARY: var(--DARK-BLUE);
-  --MY-SECONDARY: var(--LIGHTEST-RED);
-  --amplify-colors-font-primary: var(--MY-PRIMARY);
-  /* you can also use references: */
-  --amplify-colors-font-secondary: var(--MY-PRIMARY);
+    --amplify-colors-font-primary: var(--AMPLIFY-PRIMARY);
+    --amplify-colors-font-secondary: var(--AMPLIFY-PRIMARY);
+    --amplify-components-divider-label-background-color: var(--AMPLIFY-FORM-BACKGROUND);
+}
+
+[data-amplify-authenticator] [data-amplify-router] {
+    background: var(--AMPLIFY-FORM-BACKGROUND);
+    /* background: #272727; */
+}
+
+[data-amplify-authenticator][data-variation=modal] {
+    background: var(--AMPLIFY-PAGE-BACKGROUND);
+    /* background: #3a3a3a; */
 }
 
 .amplify-button {
-  background: none;
-  border: 1px solid var(--MY-PRIMARY);
-  color: var(--DARK-BLUE) !important;
+    background: none;
+    border: 1px solid var(--AMPLIFY-PRIMARY);
+    color: var(--AMPLIFY-PRIMARY) !important;
 }
-/* 
-.amplify-button--primary {
-  color: var(--DARK-BLUE) !important;
-} */
 
 .amplify-button:hover {
-  color: var(--MY-PRIMARY);
-  background: var(--MY-SECONDARY);
-  border-color: var(--MY-PRIMARY);
+    color: var(--AMPLIFY-PRIMARY);
+    background: var(--AMPLIFY-SECONDARY);
+    border-color: var(--AMPLIFY-PRIMARY);
 }
 
 .amplify-tabs-item {
-  color: var(--MY-PRIMARY) !important;
+    color: var(--AMPLIFY-PRIMARY) !important;
 }
 
 .amplify-tabs-item[data-state=active] {
-  color: var(--MY-PRIMARY);
-  border-color: var(--MY-PRIMARY) !important;
+    color: var(--AMPLIFY-PRIMARY);
+    border-color: var(--AMPLIFY-PRIMARY) !important;
 }
 
 .amplify-tabs-item[data-state=inactive] {
-  color: #869eca !important;
+     color: var(--AMPLIFY-INACTIVE-TAB-COLOR) !important;
+     background: var(--AMPLIFY-INACTIVE-TAB-BACKGROUND);
 }
 
 .amplify-tabs-item:hover {
-  border-color: var(--MY-SECONDARY);
+    border-color: var(--MY-SECONDARY);
 }
 
 .amplify-input:focus {
-  border-color: var(--MY-PRIMARY) !important;
+    border-color: var(--MY-PRIMARY) !important;
 }

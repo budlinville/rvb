@@ -8,13 +8,16 @@ import { AmplifyProvider } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
 import Router from './Router';
-import { dark, light } from './themes/index.ts';
+import { dark, light, setAmplifyDarkMode } from './themes/index.ts';
 import { DARK_MODE } from './local-storage/keys.ts';
 
 Amplify.configure(config);
 
 export const App = () => {
     const [isDarkMode, _] = useLocalStorage(DARK_MODE, false);
+
+    if (isDarkMode)
+        setAmplifyDarkMode();
 
     return (
         <React.StrictMode>
