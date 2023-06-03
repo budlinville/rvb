@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-rvb-staging-165023-authRole",
+      "UnauthRoleArn": "arn:aws:iam::907020937520:role/amplify-rvb-staging-165023-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::907020937520:role/amplify-rvb-staging-165023-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-rvb-staging-165023-deployment",
+      "UnauthRoleName": "amplify-rvb-staging-165023-unauthRole",
+      "StackName": "amplify-rvb-staging-165023",
+      "StackId": "arn:aws:cloudformation:us-east-2:907020937520:stack/amplify-rvb-staging-165023/67078bb0-009c-11ee-a7d5-02ad02f73409",
+      "AmplifyAppId": "du8aclnquomz8"
+    },
+    "categories": {
+      "auth": {
+        "RVB": {}
+      }
+    }
+  }
+}

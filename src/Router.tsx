@@ -1,5 +1,6 @@
-import { ReactElement } from 'react';
+import { ReactElement, ComponentType } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 
 import { PageT, withFlexPage, withPage } from './components/Page';
 
@@ -12,12 +13,27 @@ import Settings, { SETTINGS_PATH } from './components/pages/Settings';
 
 interface PageOptionsT {
     pageType?: PageT,
+    authRequired?: boolean,
 }
 
+const defaultPageOptions: PageOptionsT = {
+    pageType: 'page',
+    authRequired: false,
+};
 
-const route = (path: string, component: ReactElement, options: PageOptionsT) => {
-    const page = options.pageType === 'page' ? withPage : withFlexPage;
-    return <Route path={ path } Component={ () => page(component) } />;
+
+const route = (path: string, component: ReactElement, opt: PageOptionsT) => {
+    const options = { ...defaultPageOptions, ...opt };
+
+    const page: () => ReactElement = options.pageType === 'page'
+        ? () => withPage(component)
+        : () => withFlexPage(component);
+
+    const pageWithAuth: ComponentType | ReactElement = options.authRequired
+        ? withAuthenticator(page)
+        : page;
+
+    return <Route path={ path } Component={ pageWithAuth as ComponentType } />;
 };
 
 
@@ -28,14 +44,15 @@ const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
-                { route(HOME_PATH,      <Home />,       { pageType: 'flex-page'}) }
-                { route(ABOUT_PATH,     <About />,      { pageType: 'flex-page'}) }
-                { route(SUPPORT_PATH,   <Support />,    { pageType: 'flex-page'}) }
-                { route(STATS_PATH,     <Stats />,      { pageType: 'flex-page'}) }
-                { route(SETTINGS_PATH,  <Settings />,   { pageType: 'flex-page'}) }
+                { route(HOME_PATH,      <Home />,       { pageType: 'flex-page' }) }
+                { route(ABOUT_PATH,     <About />,      { pageType: 'flex-page' }) }
+                { route(SUPPORT_PATH,   <Support />,    { pageType: 'flex-page' }) }
+                { route(STATS_PATH,     <Stats />,      { pageType: 'flex-page', authRequired: true }) }
+                { route(SETTINGS_PATH,  <Settings />,   { pageType: 'page' }) }
             </Routes>
         </BrowserRouter>
     );
 };
 
 export default Router;
+

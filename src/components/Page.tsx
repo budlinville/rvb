@@ -20,7 +20,7 @@ const Page = ({ children }: PageProps) => {
     );
 }
 
-export const withPage = (component: ReactElement) => (<Page>{ component }</Page>);
+export const withPage = (component: ReactElement): ReactElement => (<Page>{ component }</Page>);
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -35,4 +35,4 @@ const FlexPage = ({ children }: PageProps) => {
     );
 }
 
-export const withFlexPage = (component: ReactElement) => (<FlexPage>{ component }</FlexPage>);
+export const withFlexPage = (component: ReactElement): ReactElement => (<FlexPage>{ component }</FlexPage>);

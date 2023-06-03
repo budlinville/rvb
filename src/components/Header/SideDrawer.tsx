@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { Auth } from 'aws-amplify';
 
 import Drawer from '@mui/material/Drawer';
 import Box from "@mui/material/Box";
@@ -82,7 +83,7 @@ const SideDrawer = ({ open, onClose }: SideDrawerProps) => {
 
                 <List>
                     <ListItem key={1} disablePadding>
-                        <ListItemButton>
+                        <ListItemButton onClick={ () => Auth.signOut().then( () => navigate(HOME_PATH)) }>
                             <ListItemIcon>
                                 <MeetingRoomIcon />
                             </ListItemIcon>

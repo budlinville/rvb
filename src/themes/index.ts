@@ -3,7 +3,8 @@ import darkScrollbar from '@mui/material/darkScrollbar';
 import { PaletteMode } from '@mui/material';
 import { grey } from "@mui/material/colors";
 
-import './index.css';
+import '../index.css';
+import './aws-themes.css';
 
 // These are defined in index.css
 const RED           = getComputedStyle(document.documentElement).getPropertyValue('--RED');
@@ -13,11 +14,12 @@ const BLUE          = getComputedStyle(document.documentElement).getPropertyValu
 const DARK_BLUE     = getComputedStyle(document.documentElement).getPropertyValue('--DARK-BLUE');
 const LIGHT_BLUE    = getComputedStyle(document.documentElement).getPropertyValue('--LIGHT-BLUE');
 
-const primary   = { main: RED,  dark: DARK_RED,  light: LIGHT_RED };
-const secondary = { main: BLUE, dark: DARK_BLUE, light: LIGHT_BLUE };
-
 
 //----------------------------------------------------------------------------------------------------------------------
+// MUI Theme Configuration
+//----------------------------------------------------------------------------------------------------------------------
+const primary   = { main: RED,  dark: DARK_RED,  light: LIGHT_RED };
+const secondary = { main: BLUE, dark: DARK_BLUE, light: LIGHT_BLUE };
 
 
 const commonProperties = (mode: PaletteMode): ThemeOptions => ({

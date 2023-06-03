@@ -9,5 +9,7 @@
   <body style="margin:0">
     <div id="root"></div>
     <script type="module" src="/src/index.tsx"></script>
+    <!-- Added below line to fix Amplify Error -->
+    <script> var global = global || window; </script>
   </body>
 </html>

@@ -1,0 +1,44 @@
+:root, [data-amplify-theme] {
+  --MY-PRIMARY: var(--DARK-BLUE);
+  --MY-SECONDARY: var(--LIGHTEST-RED);
+  --amplify-colors-font-primary: var(--MY-PRIMARY);
+  /* you can also use references: */
+  --amplify-colors-font-secondary: var(--MY-PRIMARY);
+}
+
+.amplify-button {
+  background: none;
+  border: 1px solid var(--MY-PRIMARY);
+  color: var(--DARK-BLUE) !important;
+}
+/* 
+.amplify-button--primary {
+  color: var(--DARK-BLUE) !important;
+} */
+
+.amplify-button:hover {
+  color: var(--MY-PRIMARY);
+  background: var(--MY-SECONDARY);
+  border-color: var(--MY-PRIMARY);
+}
+
+.amplify-tabs-item {
+  color: var(--MY-PRIMARY) !important;
+}
+
+.amplify-tabs-item[data-state=active] {
+  color: var(--MY-PRIMARY);
+  border-color: var(--MY-PRIMARY) !important;
+}
+
+.amplify-tabs-item[data-state=inactive] {
+  color: #869eca !important;
+}
+
+.amplify-tabs-item:hover {
+  border-color: var(--MY-SECONDARY);
+}
+
+.amplify-input:focus {
+  border-color: var(--MY-PRIMARY) !important;
+}

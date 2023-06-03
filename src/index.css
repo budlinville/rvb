@@ -21,6 +21,7 @@
     --BLUE-TEXT-ACCENT-DARK: rgb(0, 0, 100);
     --BLUE-BUTTON-GRADIENT: radial-gradient(var(--LIGHT-BLUE), var(--BLUE) 30%, var(--DARK-BLUE) 90%);
 
+    --LIGHTEST-RED: rgb(255, 120, 120);
     --LIGHT-RED: rgb(255, 60, 60);
     --RED: rgb(255, 30, 30);
     --DARK-RED: rgb(150, 0, 0);

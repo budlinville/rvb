@@ -7,6 +7,7 @@ import Switch from "@mui/material/Switch";
 import Typography from "@mui/material/Typography";
 
 import { DARK_MODE } from '../../../local-storage/keys';
+import { Divider } from '@mui/material';
 
 const Settings = () => {
     const [isDarkTheme, setDarkTheme] = useLocalStorage(DARK_MODE, true);
@@ -15,6 +16,7 @@ const Settings = () => {
         <Container>
             <Box sx={{ my: 2 }}>
                 <Typography variant="h3" component="div"> Settings </Typography>
+                <Divider />
                     <div className={classes.themeSwitchContainer}>
                         <Typography variant="h5" component="div"> LIGHT </Typography>
                             <Switch checked={isDarkTheme} onChange={ () => setDarkTheme(prev => !prev) }/>
