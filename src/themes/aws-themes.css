@@ -9,9 +9,13 @@
 }
 
 :root, [data-amplify-theme] {
+    --amplify-primary-color: var(--AMPLIFY-PRIMARY);
     --amplify-colors-font-primary: var(--AMPLIFY-PRIMARY);
     --amplify-colors-font-secondary: var(--AMPLIFY-PRIMARY);
     --amplify-components-divider-label-background-color: var(--AMPLIFY-FORM-BACKGROUND);
+    --amplify-components-loader-stroke-filled: var(--AMPLIFY-PRIMARY);
+    --amplify-components-loader-stroke-empty: transparent;
+
 }
 
 [data-amplify-authenticator] [data-amplify-router] {
@@ -48,12 +52,4 @@
 .amplify-tabs-item[data-state=inactive] {
      color: var(--AMPLIFY-INACTIVE-TAB-COLOR) !important;
      background: var(--AMPLIFY-INACTIVE-TAB-BACKGROUND);
-}
-
-.amplify-tabs-item:hover {
-    border-color: var(--MY-SECONDARY);
-}
-
-.amplify-input:focus {
-    border-color: var(--MY-PRIMARY) !important;
 }
