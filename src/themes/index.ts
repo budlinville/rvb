@@ -65,6 +65,7 @@ export const dark = createTheme(darkOptions);
 export const setAmplifyDarkMode = () => {
     const root: HTMLElement = document.querySelector(':root') as HTMLElement;
     root.style.setProperty('--AMPLIFY-PRIMARY', 'var(--LIGHTEST-BLUE)');
+    root.style.setProperty('--AMPLIFY-SECONDARY', 'var(--DARKEST-RED)');
     root.style.setProperty('--AMPLIFY-PAGE-BACKGROUND', '#3a3a3a');
     root.style.setProperty('--AMPLIFY-FORM-BACKGROUND', '#272727');
     root.style.setProperty('--AMPLIFY-INACTIVE-TAB-BACKGROUND', '#4d4d4d');

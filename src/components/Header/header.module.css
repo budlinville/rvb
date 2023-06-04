@@ -1,0 +1,5 @@
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    background: var(--BLUE-HEADER-GRADIENT-LIGHT)
+}

@@ -11,7 +11,9 @@ import Router from './Router';
 import { dark, light, setAmplifyDarkMode } from './themes/index.ts';
 import { DARK_MODE } from './local-storage/keys.ts';
 
+
 Amplify.configure(config);
+
 
 export const App = () => {
     const [isDarkMode, _] = useLocalStorage(DARK_MODE, false);

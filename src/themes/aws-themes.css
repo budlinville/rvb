@@ -20,12 +20,10 @@
 
 [data-amplify-authenticator] [data-amplify-router] {
     background: var(--AMPLIFY-FORM-BACKGROUND);
-    /* background: #272727; */
 }
 
 [data-amplify-authenticator][data-variation=modal] {
     background: var(--AMPLIFY-PAGE-BACKGROUND);
-    /* background: #3a3a3a; */
 }
 
 .amplify-button {
@@ -38,6 +36,10 @@
     color: var(--AMPLIFY-PRIMARY);
     background: var(--AMPLIFY-SECONDARY);
     border-color: var(--AMPLIFY-PRIMARY);
+}
+
+.amplify-input:focus {
+    border-color: var(--MY-PRIMARY) !important;
 }
 
 .amplify-tabs-item {

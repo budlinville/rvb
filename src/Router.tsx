@@ -9,6 +9,7 @@ import About, { ABOUT_PATH } from './components/pages/About';
 import Support, { SUPPORT_PATH } from './components/pages/Support';
 import Stats, { STATS_PATH } from './components/pages/Stats';
 import Settings, { SETTINGS_PATH } from './components/pages/Settings';
+import Login, { LOGIN_PATH } from './components/pages/Login';
 
 
 interface PageOptionsT {
@@ -22,7 +23,7 @@ const defaultPageOptions: PageOptionsT = {
 };
 
 
-const route = (path: string, component: ReactElement, opt: PageOptionsT) => {
+const route = (path: string, component: ReactElement, opt: PageOptionsT = {}) => {
     const options = { ...defaultPageOptions, ...opt };
 
     const page: () => ReactElement = options.pageType === 'page'
@@ -44,6 +45,7 @@ const Router = () => {
     return (
         <BrowserRouter>
             <Routes>
+                { route(LOGIN_PATH,     <Login />) }
                 { route(HOME_PATH,      <Home />,       { pageType: 'flex-page' }) }
                 { route(ABOUT_PATH,     <About />,      { pageType: 'flex-page' }) }
                 { route(SUPPORT_PATH,   <Support />,    { pageType: 'flex-page' }) }
