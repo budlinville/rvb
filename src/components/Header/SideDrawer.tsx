@@ -25,22 +25,22 @@ import { SETTINGS_PATH } from '../pages/Settings';
 //----------------------------------------------------------------------------------------------------------------------
 
 
-interface DrawerPagesT {
+interface DrawerPageT {
     id: number;
     label: string;
     route: string;
     icon: JSX.Element;
 };
 
-enum DividerT { DIVIDER };
+interface DividerT { id: number, divider: boolean };
 
-const pages: (DrawerPagesT | DividerT)[] = [
+const menuItems: (DrawerPageT | DividerT)[] = [
     { id: 1, label: 'Home',     route: HOME_PATH,       icon: <CottageIcon /> },
-    DividerT.DIVIDER,
-    { id: 2, label: 'About',    route: ABOUT_PATH,      icon: <ImportContactsIcon /> },
-    { id: 3, label: 'Support',  route: SUPPORT_PATH,    icon: <AccessibilityNewIcon /> },
-    { id: 4, label: 'Stats',    route: STATS_PATH,      icon: <AssessmentIcon /> },
-    { id: 5, label: 'Settings', route: SETTINGS_PATH,   icon: <SettingsIcon /> },
+    { id: 2, divider: true },
+    { id: 3, label: 'About',    route: ABOUT_PATH,      icon: <ImportContactsIcon /> },
+    { id: 4, label: 'Support',  route: SUPPORT_PATH,    icon: <AccessibilityNewIcon /> },
+    { id: 5, label: 'Stats',    route: STATS_PATH,      icon: <AssessmentIcon /> },
+    { id: 6, label: 'Settings', route: SETTINGS_PATH,   icon: <SettingsIcon /> },
 ];
 
 
@@ -67,10 +67,11 @@ const SideDrawer = ({ open, onClose }: SideDrawerProps) => {
         >
             <Box role='presentation' sx={{ width:  250 }}>
                 <List>
-                    { pages.map( page => {
-                        if (page === DividerT.DIVIDER)
-                            return <Divider />;
+                    { menuItems.map( item => {
+                        if ((item as DividerT).divider)
+                            return <Divider key={item.id} />;
 
+                        const page = item as DrawerPageT;
                         return (
                             <ListItem key={page.id} disablePadding>
                                 <ListItemButton onClick={ () => onBoxClickHandler(page.route) }>
