@@ -1,8 +1,18 @@
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import Divider from '@mui/material/Divider';
+
 const Support = () => {
+
     return (
-        <div>
-            <h1>Support</h1>
-        </div>
+        <Container>
+            <Box sx={{ my: 2 }}>
+                <Typography variant="h3" component="div"> Support </Typography>
+                <Divider />
+                    
+            </Box>
+        </Container>
     );
 };
 
