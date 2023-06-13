@@ -1,4 +1,20 @@
 {
+  "api": {
+    "rvbApi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "rvbLambda"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
   "auth": {
     "RVB": {
       "customAuth": false,
@@ -31,6 +47,31 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "Cognito"
+    }
+  },
+  "function": {
+    "rvbLambda": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_rvbLambda_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "rvbLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_rvbLambda_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "rvbLambda"
+        }
+      ]
     }
   }
 }

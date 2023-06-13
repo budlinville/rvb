@@ -37,11 +37,11 @@ interface DividerT { id: number, divider: boolean };
 const menuItems: (DrawerPageT | DividerT)[] = [
     { id: 1, label: 'Home',     route: HOME_PATH,       icon: <CottageIcon /> },
     { id: 2, divider: true },
-    { id: 5, label: 'Stats',    route: STATS_PATH,      icon: <AssessmentIcon /> },
-    { id: 3, label: 'About',    route: ABOUT_PATH,      icon: <ImportContactsIcon /> },
-    { id: 4, label: 'Support',  route: SUPPORT_PATH,    icon: <AccessibilityNewIcon /> },
-    { id: 2, divider: true },
-    { id: 6, label: 'Settings', route: SETTINGS_PATH,   icon: <SettingsIcon /> },
+    { id: 3, label: 'Stats',    route: STATS_PATH,      icon: <AssessmentIcon /> },
+    { id: 4, label: 'About',    route: ABOUT_PATH,      icon: <ImportContactsIcon /> },
+    { id: 5, label: 'Support',  route: SUPPORT_PATH,    icon: <AccessibilityNewIcon /> },
+    { id: 6, divider: true },
+    { id: 7, label: 'Settings', route: SETTINGS_PATH,   icon: <SettingsIcon /> },
 ];
 
 

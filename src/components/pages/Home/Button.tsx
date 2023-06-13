@@ -1,13 +1,17 @@
 import { ReactNode } from 'react';
+import { API } from 'aws-amplify';
 
 import classes from './home.module.css';
 import clickSound from '/click.mp3';
+import useAuth from '../../../hooks/useAuth';
+
 
 export type ButtonT = 'red' | 'blue';
 
 
 const audio = new Audio(clickSound);
-
+const RVB_API = 'rvbApi';
+const PATH = '/rvb/click'
 
 interface ButtonProps {
     children: ReactNode;
@@ -15,10 +19,15 @@ interface ButtonProps {
 };
 
 const Button = ({ children, type }: ButtonProps) => {
+    const [userDetails, _] = useAuth();
+    console.log(userDetails)
     const colorClassName = type === 'red' ? classes.red : classes.blue;
 
-    const onMouseDownHandler = () => {
+    const onMouseDownHandler = async () => {
         audio.play();
+
+        const response = await API.post(RVB_API, PATH, { body: { userDetails }});
+        console.log(response);
     };
 
     return (

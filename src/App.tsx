@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/material';
 import { useLocalStorage } from 'usehooks-ts';
 
 import { Amplify } from 'aws-amplify';
-import config from './aws-exports.ts';
+import config from './aws-exports';
 import { AmplifyProvider } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 

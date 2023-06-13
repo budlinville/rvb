@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/rvb": {
+      "name": "/rvb",
+      "lambdaFunction": "rvbLambda",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
