@@ -8,7 +8,7 @@ const updateColor = async (color, value) => {
     const response = await dynamo.update({
         TableName: 'rvb-click',
         Key:                        { id: GLOBAL_ID },
-        UpdateExpression: "set #color = :color_value",
+        UpdateExpression: "ADD #color :color_value",
         ExpressionAttributeNames:   { '#color': color },
         ExpressionAttributeValues:  { ':color_value': value },
         ReturnValues: 'ALL_NEW',

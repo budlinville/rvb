@@ -52,15 +52,27 @@ app.post('/rvb', function(req, res) {
     res.json({success: 'post call succeed!', url: req.url, body: req.body})
 });
 
-app.post('/rvb/click', async function(req, res) {
-    await updateColor('red', '2');
-    await updateColor('blue', '2');
+app.post('/rvb/click/:color', async function(req, res, next) {
+    try {
+        const color = req.params.color;
+        if (!['red', 'blue'].includes(color))
+            throw new Error('"color" paramater value must be "red" or "blue".');
 
-    res.json({
-        success: 'Hello from Lambda!',
-        url: req.url,
-        body: req.body
-    });
+        const { clicks } = req.body;
+        if (clicks === 0) {
+            res.json({ success: `No increment needed. "Clicks" value of "0" passes in` });
+            return;  // TODO: Is this necessary?
+        }
+
+        if (!clicks)
+            throw new Error('"Clicks" missing from request body.')
+
+        await updateColor(color, clicks);
+
+        res.json({ success: `Successfully incremented "${color}" by ${clicks}` });
+    } catch (error) {
+        return next(error);
+    }
 });
 
 app.post('/rvb/*', function(req, res) {
