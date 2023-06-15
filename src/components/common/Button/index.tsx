@@ -6,45 +6,22 @@ import RVB_API from '../../../api/sources';
 
 import classes from './button.module.css';
 import clickSound from '/click.mp3';
+import useClicks from '../../../hooks/useClicks';
 
 export type ButtonT = 'red' | 'blue';
 
 
 const audio = new Audio(clickSound);
-const ONE_SECOND = 1000;
 
 interface ButtonProps {
     children: ReactNode;
     type: ButtonT;
 };
 
-interface RvbClickT {
-    clicks: number,
-    userDetails: UserDetailsT
-}
-
 const Button = ({ children, type }: ButtonProps) => {
-    const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
-    const [clicks, setClicks] = useState<number>(0);
-    const [userDetails, _] = useAuth();
+    const [_, setClicks] = useClicks(type);
 
-    const path = `/rvb/click/${type}`
     const colorClassName = type === 'red' ? classes.red : classes.blue;
-    
-    const postClicks = async (clicks: number) => {
-        if (clicks) {
-            console.log(`POSTING: ${clicks}`);
-            const response = await post(RVB_API, path, { userDetails, clicks } as RvbClickT);
-            setClicks(0);
-            console.log(response)
-        }
-    }
-
-    useEffect(() => {
-        clearTimeout(timer as NodeJS.Timeout);
-        setTimer(setTimeout(() => postClicks(clicks), ONE_SECOND));
-        return () => clearTimeout(timer as NodeJS.Timeout);
-    }, [clicks]);
 
     const onMouseDownHandler = async () => {
         audio.play();

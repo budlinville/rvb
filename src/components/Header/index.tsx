@@ -24,6 +24,7 @@ import { AppContext } from '../ContextProvider';
 
 import classes from './header.module.css';
 import useWindowWidth from '../../hooks/useWindowWidth';
+import useClicks from '../../hooks/useClicks';
 
 
 const APP_NAME = 'Red Team VS Blue Team';
@@ -44,12 +45,17 @@ export const Header = ({
     const [drawerOpen, setDrawerOpen] = useState(false);
     const { loading, counts: { red, blue } } = useContext(AppContext);
 
-    const [userDetails, _] = useAuth();
-    const windowWidth = useWindowWidth();
     const navigate = useNavigate();
     const headerAnchorRef = useRef<HTMLDivElement>(null);
+
+    const windowWidth = useWindowWidth();
     const headerHeight = useHeaderHeight();
 
+    const [_, setRedClicks] = useClicks('red');
+    const [__, setBlueClicks] = useClicks('blue');
+    const [userDetails, ___] = useAuth();
+
+    // Event Handlers
     const onMenuClick = () => setDrawerOpen(true);
     const onLoginClick = () => navigate(LOGIN_PATH);
 
@@ -75,14 +81,22 @@ export const Header = ({
                         </IconButton>
 
                         <div className={classes.titleContainer}>
-                            <Typography variant='body2'> ({ red.toLocaleString("en-US") }) </Typography>
+                            <Typography variant='body2' sx={{ mr: 2 }}> ({ red.toLocaleString("en-US") }) </Typography>
 
                             { isMobile
                                 ? <Typography variant='h6' className={classes.title}> RVB </Typography>
-                                : <Typography variant='h6' className={classes.title}> { APP_NAME } </Typography>
+                                : <>
+                                    <Button variant="contained" onClick={ () => setRedClicks(prev => ++prev) }>
+                                        Red Team
+                                    </Button>
+                                    <Typography variant='h6' className={classes.title}> VS </Typography>
+                                    <Button variant="contained" color='secondary' onClick={ () => setBlueClicks(prev => ++prev) }>
+                                        Blue Team
+                                    </Button>
+                                </>
                             }
 
-                            <Typography variant='body2'> ({ blue.toLocaleString("en-US") }) </Typography>
+                            <Typography variant='body2' sx={{ ml: 2 }}> ({ blue.toLocaleString("en-US") }) </Typography>
                         </div>
                         { !!userDetails
                             ? <ProfileMenu />
