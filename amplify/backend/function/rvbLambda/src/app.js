@@ -6,14 +6,15 @@ or in the "license" file accompanying this file. This file is distributed on an 
 See the License for the specific language governing permissions and limitations under the License.
 */
 
-
-
-
 const express = require('express')
 const bodyParser = require('body-parser')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 
 const { updateColorCount, getColorCounts } = require('./db/click');
+
+
+// Constants
+const GLOBAL_ID = 'global'
 
 
 // declare a new express app
@@ -38,14 +39,25 @@ app.get('/rvb', function(req, res) {
     res.json({success: 'get call succeed!', url: req.url});
 });
 
-app.get('/rvb/clicks', async (req, res, next) => {
+app.get('/rvb/clicks/', async (req, res, next) => {
     try {
-        const response = await getColorCounts();
+        const { userDetails: { username } } = req?.body;
+        const response = await getColorCounts(username);
         res.json({ counts: response })
     } catch (error) {
         return next(error);
     }
 });
+
+app.get('/rvb/clicks/global', async (req, res, next) => {
+    try {
+        const response = await getColorCounts(GLOBAL_ID);
+        res.json({ counts: response })
+    } catch (error) {
+        return next(error);
+    }
+});
+
 
 /****************************
 * Example post method *
@@ -71,7 +83,9 @@ app.post('/rvb/click/:color', async (req, res, next) => {
         if (!clicks)
             throw new Error('"Clicks" missing from request body.')
 
-        await updateColorCount(color, clicks);
+        const { userDetails: { username }} = req.body;
+        await updateColorCount(username, color, clicks);
+        await updateColorCount(GLOBAL_ID, color, clicks);
 
         res.json({ success: `Successfully incremented "${color}" by ${clicks}` });
     } catch (error) {

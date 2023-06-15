@@ -18,7 +18,7 @@
       "function": {
         "rvbLambda": {
           "deploymentBucketName": "amplify-rvb-staging-165023-deployment",
-          "s3Key": "amplify-builds/rvbLambda-72625a58693147426b39-build.zip"
+          "s3Key": "amplify-builds/rvbLambda-7a4d5250745467616b66-build.zip"
         }
       },
       "api": {

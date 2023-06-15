@@ -2,6 +2,7 @@ import { ReactNode, createContext, useEffect, useState } from "react";
 
 import API from '../api';
 import RVB_API from '../api/sources';
+import useAuth from "../hooks/useAuth";
 
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -39,6 +40,7 @@ interface Props {
 }
 
 const ContextProvider = ({ children }: Props) => {
+    const [userDetails, _] = useAuth();
     const [loading, setLoading] = useState(false);
     const [counts, setCounts] = useState<CountsT>(initialCounts);
 
@@ -46,8 +48,8 @@ const ContextProvider = ({ children }: Props) => {
 
     useEffect(() => {
         const fetchClicks = async () => {
-            const response = await API.get(RVB_API, '/rvb/clicks');
-            setCounts(response.counts)
+            const response = await API.get(RVB_API, '/rvb/clicks/global', { userDetails });
+            setCounts(response?.counts)
         };
 
         fetchClicks();
