@@ -13,7 +13,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 
-const updateColor = require('./db/click');
+const { updateColorCount, getColorCounts } = require('./db/click');
 
 
 // declare a new express app
@@ -38,9 +38,13 @@ app.get('/rvb', function(req, res) {
     res.json({success: 'get call succeed!', url: req.url});
 });
 
-app.get('/rvb/*', function(req, res) {
-    // Add your code here
-    res.json({success: 'get call succeed!', url: req.url});
+app.get('/rvb/clicks', async (req, res, next) => {
+    try {
+        const response = await getColorCounts();
+        res.json({ counts: response })
+    } catch (error) {
+        return next(error);
+    }
 });
 
 /****************************
@@ -52,7 +56,7 @@ app.post('/rvb', function(req, res) {
     res.json({success: 'post call succeed!', url: req.url, body: req.body})
 });
 
-app.post('/rvb/click/:color', async function(req, res, next) {
+app.post('/rvb/click/:color', async (req, res, next) => {
     try {
         const color = req.params.color;
         if (!['red', 'blue'].includes(color))
@@ -67,7 +71,7 @@ app.post('/rvb/click/:color', async function(req, res, next) {
         if (!clicks)
             throw new Error('"Clicks" missing from request body.')
 
-        await updateColor(color, clicks);
+        await updateColorCount(color, clicks);
 
         res.json({ success: `Successfully incremented "${color}" by ${clicks}` });
     } catch (error) {

@@ -4,7 +4,8 @@ const GLOBAL_ID = 'global'
 
 const dynamo = new DynamoDB.DocumentClient();
 
-const updateColor = async (color, value) => {
+
+const updateColorCount = async (color, value) => {
     const response = await dynamo.update({
         TableName: 'rvb-click',
         Key:                        { id: GLOBAL_ID },
@@ -15,6 +16,21 @@ const updateColor = async (color, value) => {
     }).promise();
 
     return response;
-}
+};
 
-module.exports = updateColor;
+
+const getColorCounts = async () => {
+    const response = await dynamo.get({
+        TableName: 'rvb-click',
+        Key: { id: GLOBAL_ID },
+        ProjectionExpression: ['red', 'blue']
+    }).promise();
+
+    return response.Item;
+};
+
+
+module.exports = {
+    updateColorCount,
+    getColorCounts,
+};

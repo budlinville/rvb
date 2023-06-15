@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState } from 'react';
 
 import useAuth, { UserDetailsT } from '../../../hooks/useAuth';
 import { post } from '../../../api';
+import RVB_API from '../../../api/sources';
 
 import classes from './button.module.css';
 import clickSound from '/click.mp3';
@@ -10,7 +11,6 @@ export type ButtonT = 'red' | 'blue';
 
 
 const audio = new Audio(clickSound);
-const RVB_API = 'rvbApi';
 const ONE_SECOND = 1000;
 
 interface ButtonProps {
@@ -27,6 +27,9 @@ const Button = ({ children, type }: ButtonProps) => {
     const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
     const [clicks, setClicks] = useState<number>(0);
     const [userDetails, _] = useAuth();
+
+    const path = `/rvb/click/${type}`
+    const colorClassName = type === 'red' ? classes.red : classes.blue;
     
     const postClicks = async (clicks: number) => {
         if (clicks) {
@@ -36,9 +39,6 @@ const Button = ({ children, type }: ButtonProps) => {
             console.log(response)
         }
     }
-
-    const path = `/rvb/click/${type}`
-    const colorClassName = type === 'red' ? classes.red : classes.blue;
 
     useEffect(() => {
         clearTimeout(timer as NodeJS.Timeout);

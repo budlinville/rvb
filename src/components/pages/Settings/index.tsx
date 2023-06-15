@@ -14,7 +14,7 @@ const Settings = () => {
 
     return (
         <Container>
-            <Box sx={{ my: 2 }}>
+            <Box sx={{ my: 2, mx: 2 }}>
                 <Typography variant="h3" component="div"> Settings </Typography>
                 <Divider />
                     <div className={classes.themeSwitchContainer}>

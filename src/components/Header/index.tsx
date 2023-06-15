@@ -1,4 +1,4 @@
-import { ReactElement, useRef, useState } from 'react';
+import { ReactElement, useContext, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import Fab from '@mui/material/Fab';
 import MenuIcon from '@mui/icons-material/Menu';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import LinearProgress from '@mui/material/LinearProgress';
 
 import ScrollTop from './ScrollTop';
 import HideOnScroll from './HideOnScroll';
@@ -19,12 +20,13 @@ import ProfileMenu from './ProfileMenu';
 import useAuth from '../../hooks/useAuth';
 import useHeaderHeight from '../../hooks/useHeaderHeight';
 import { LOGIN_PATH } from '../pages/Login';
+import { AppContext } from '../ContextProvider';
 
 import classes from './header.module.css';
+import useWindowWidth from '../../hooks/useWindowWidth';
 
 
 const APP_NAME = 'Red Team VS Blue Team';
-const APP_NAME_VARIANT = 'h6';
 
 
 interface Props {
@@ -39,15 +41,22 @@ export const Header = ({
     enableScrollTop=true,
     children,
 }: Props) => {
-    const [userDetails, _] = useAuth();
-    const navigate = useNavigate();
-
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const { loading, counts: { red, blue } } = useContext(AppContext);
+
+    const [userDetails, _] = useAuth();
+    const windowWidth = useWindowWidth();
+    const navigate = useNavigate();
     const headerAnchorRef = useRef<HTMLDivElement>(null);
     const headerHeight = useHeaderHeight();
 
     const onMenuClick = () => setDrawerOpen(true);
     const onLoginClick = () => navigate(LOGIN_PATH);
+
+    const redShare = Math.round(red / (red + blue) * 100)
+    const isMobile = windowWidth < 600;
+
+    console.log(red, blue)
 
     return (
         <>
@@ -65,13 +74,22 @@ export const Header = ({
                             <MenuIcon />
                         </IconButton>
 
-                        <Typography variant={APP_NAME_VARIANT}> { APP_NAME } </Typography>
+                        <div className={classes.titleContainer}>
+                            <Typography variant='body2'> ({ red.toLocaleString("en-US") }) </Typography>
 
+                            { isMobile
+                                ? <Typography variant='h6' className={classes.title}> RVB </Typography>
+                                : <Typography variant='h6' className={classes.title}> { APP_NAME } </Typography>
+                            }
+
+                            <Typography variant='body2'> ({ blue.toLocaleString("en-US") }) </Typography>
+                        </div>
                         { !!userDetails
                             ? <ProfileMenu />
                             : <Button color='inherit' onClick={ onLoginClick }> Login / Signup </Button>
                         }
                     </Toolbar>
+                    <LinearProgress variant={ loading ? 'indeterminate' : 'determinate' } value={redShare} />
                 </AppBar>
             </HideOnScroll>
 

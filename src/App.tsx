@@ -10,6 +10,7 @@ import '@aws-amplify/ui-react/styles.css';
 import Router from './Router';
 import { dark, light, setAmplifyDarkMode } from './themes/index.ts';
 import { DARK_MODE } from './local-storage/keys.ts';
+import ContextProvider from './components/ContextProvider.tsx';
 
 
 Amplify.configure(config);
@@ -25,7 +26,9 @@ export const App = () => {
         <React.StrictMode>
             <AmplifyProvider>
                 <ThemeProvider theme={ isDarkMode ? dark : light }>
-                    <Router />
+                    <ContextProvider>
+                        <Router />
+                    </ContextProvider>
                 </ThemeProvider>
             </AmplifyProvider>
         </React.StrictMode>

@@ -33,6 +33,12 @@ const commonProperties = (mode: PaletteMode): ThemeOptions => ({
                 ),
             },
         },
+        MuiLinearProgress: {
+            styleOverrides: {
+                root: { backgroundColor: BLUE },
+                bar: { backgroundColor: RED }
+            }
+        }
     },
 });
 

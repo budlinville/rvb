@@ -3,3 +3,14 @@
     justify-content: space-between;
     background: var(--BLUE-HEADER-GRADIENT-LIGHT)
 }
+
+.titleContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.title {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
