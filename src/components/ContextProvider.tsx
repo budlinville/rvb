@@ -1,68 +1,52 @@
-import { ReactNode, createContext, useEffect, useState } from "react";
-
-import API from '../api';
-import RVB_API from '../api/sources';
-import useAuth from "../hooks/useAuth";
-
+import { Dispatch, ReactNode, SetStateAction, createContext, useState } from "react";
 
 //----------------------------------------------------------------------------------------------------------------------
-interface CountsT {
-    red: number,
-    blue: number,
+export interface CountsT { red: number, blue: number };
+export const initialCounts: CountsT = { red: 0, blue: 0 }
+
+//----------------------------------------------------------------------------------------------------------------------
+export interface AppContextT {
+    loading: boolean,
+    counts: CountsT,
+    redClicks: number,
+    blueClicks: number,
+    setLoading: Dispatch<SetStateAction<boolean>>,
+    setCounts: Dispatch<SetStateAction<CountsT>>
+    setRedClicks: Dispatch<SetStateAction<number>>,
+    setBlueClicks: Dispatch<SetStateAction<number>>,
 };
 
-const initialCounts: CountsT = { red: 0, blue: 0 }
-
-
-//----------------------------------------------------------------------------------------------------------------------
-interface ContextT {
-    counts: CountsT,
-    loading: boolean,
-    setCounts: (counts: CountsT) => void,
-    setLoading: (loading: boolean) => void,
-}
-
-const initialContext: ContextT = {
-    counts: initialCounts,
+const initialAppContext: AppContextT = {
     loading: false,
-    setCounts: () => {},
+    counts: initialCounts,
+    redClicks: 0,
+    blueClicks: 0,
     setLoading: () => {},
-}
+    setCounts: () => {},
+    setRedClicks: () => {},
+    setBlueClicks: () => {},
+};
 
-export const AppContext = createContext<ContextT>(initialContext);
-
+export const AppContext = createContext<AppContextT>(initialAppContext);
 
 //----------------------------------------------------------------------------------------------------------------------
-const TEN_SECONDS = 5000;
+interface ContextProviderProps {
+    children: ReactNode,
+};
 
-interface Props {
-    children: ReactNode
-}
-
-const ContextProvider = ({ children }: Props) => {
-    const [userDetails, _] = useAuth();
-    const [loading, setLoading] = useState(false);
+const ContextProvider = ({ children }: ContextProviderProps) => {
+    const [loading, setLoading] = useState<boolean>(false);
     const [counts, setCounts] = useState<CountsT>(initialCounts);
+    const [redClicks, setRedClicks] = useState<number>(0);
+    const [blueClicks, setBlueClicks] = useState<number>(0);
 
-    const context: ContextT = { counts, loading, setCounts, setLoading };
+    const value = { loading, counts, redClicks, blueClicks, setLoading, setCounts, setRedClicks, setBlueClicks };
 
-    useEffect(() => {
-        const fetchClicks = async () => {
-            const response = await API.get(RVB_API, '/rvb/clicks/global', { userDetails });
-            setCounts(response?.counts)
-        };
-
-        fetchClicks();
-        const clickIntervalId = setInterval(fetchClicks, TEN_SECONDS)
-        return () => clearInterval(clickIntervalId)
-    }, []);
-    
     return (
-        <AppContext.Provider value={ context }>
+        <AppContext.Provider value={value}>
             { children }
         </AppContext.Provider>
     );
 };
-
 
 export default ContextProvider;

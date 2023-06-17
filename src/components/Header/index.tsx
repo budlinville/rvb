@@ -27,9 +27,6 @@ import useWindowWidth from '../../hooks/useWindowWidth';
 import useClicks from '../../hooks/useClicks';
 
 
-const APP_NAME = 'Red Team VS Blue Team';
-
-
 interface Props {
     enableHideOnScroll?: boolean;
     enableScrollTop?: boolean;
@@ -51,9 +48,9 @@ export const Header = ({
     const windowWidth = useWindowWidth();
     const headerHeight = useHeaderHeight();
 
-    const [_, setRedClicks] = useClicks('red');
-    const [__, setBlueClicks] = useClicks('blue');
-    const [userDetails, ___] = useAuth();
+    const [_r, setRedClicks] = useClicks('red');
+    const [_b, setBlueClicks] = useClicks('blue');
+    const [userDetails, _u] = useAuth();
 
     // Event Handlers
     const onMenuClick = () => setDrawerOpen(true);
@@ -61,8 +58,6 @@ export const Header = ({
 
     const redShare = Math.round(red / (red + blue) * 100)
     const isMobile = windowWidth < 600;
-
-    console.log(red, blue)
 
     return (
         <>

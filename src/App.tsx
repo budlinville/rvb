@@ -1,4 +1,3 @@
-import React from 'react';
 import { ThemeProvider } from '@mui/material';
 import { useLocalStorage } from 'usehooks-ts';
 
@@ -11,6 +10,8 @@ import Router from './Router';
 import { dark, light, setAmplifyDarkMode } from './themes/index.ts';
 import { DARK_MODE } from './local-storage/keys.ts';
 import ContextProvider from './components/ContextProvider.tsx';
+import CountFetcher from './components/CountFetcher.tsx';
+import React from 'react';
 
 
 Amplify.configure(config);
@@ -27,7 +28,9 @@ export const App = () => {
             <AmplifyProvider>
                 <ThemeProvider theme={ isDarkMode ? dark : light }>
                     <ContextProvider>
-                        <Router />
+                        <CountFetcher>
+                            <Router />
+                        </CountFetcher>
                     </ContextProvider>
                 </ThemeProvider>
             </AmplifyProvider>

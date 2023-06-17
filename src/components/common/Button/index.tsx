@@ -1,31 +1,28 @@
-import { ReactNode, useEffect, useState } from 'react';
-
-import useAuth, { UserDetailsT } from '../../../hooks/useAuth';
-import { post } from '../../../api';
-import RVB_API from '../../../api/sources';
+import { ReactNode } from 'react';
 
 import classes from './button.module.css';
 import clickSound from '/click.mp3';
 import useClicks from '../../../hooks/useClicks';
 
-export type ButtonT = 'red' | 'blue';
 
+export type ColorT = 'red' | 'blue';
 
 const audio = new Audio(clickSound);
 
+
 interface ButtonProps {
     children: ReactNode;
-    type: ButtonT;
+    color: ColorT;
 };
 
-const Button = ({ children, type }: ButtonProps) => {
-    const [_, setClicks] = useClicks(type);
+const Button = ({ children, color }: ButtonProps) => {
+    const [_, setClicks] = useClicks(color);
 
-    const colorClassName = type === 'red' ? classes.red : classes.blue;
+    const colorClassName = color === 'red' ? classes.red : classes.blue;
 
     const onMouseDownHandler = async () => {
         audio.play();
-        setClicks(prev => ++prev);
+        setClicks((prev: number) => ++prev);
     };
 
     return (
