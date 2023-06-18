@@ -1,4 +1,5 @@
 import { Dispatch, ReactNode, SetStateAction, createContext, useState } from "react";
+import useClicks from "../hooks/useClicks";
 
 //----------------------------------------------------------------------------------------------------------------------
 export interface CountsT { red: number, blue: number };
@@ -37,8 +38,8 @@ interface ContextProviderProps {
 const ContextProvider = ({ children }: ContextProviderProps) => {
     const [loading, setLoading] = useState<boolean>(false);
     const [counts, setCounts] = useState<CountsT>(initialCounts);
-    const [redClicks, setRedClicks] = useState<number>(0);
-    const [blueClicks, setBlueClicks] = useState<number>(0);
+    const [redClicks, setRedClicks] = useClicks('red');
+    const [blueClicks, setBlueClicks] = useClicks('blue');
 
     const value = { loading, counts, redClicks, blueClicks, setLoading, setCounts, setRedClicks, setBlueClicks };
 

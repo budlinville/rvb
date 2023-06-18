@@ -6,7 +6,7 @@ import useAuth from "../hooks/useAuth";
 import { AppContext, AppContextT } from "./ContextProvider";
 
 
-const TEN_SECONDS = 10000;
+const TEN_SECONDS = 3000;
 
 interface Props {
     children: ReactNode,

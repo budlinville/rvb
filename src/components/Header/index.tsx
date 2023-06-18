@@ -19,12 +19,11 @@ import ProfileMenu from './ProfileMenu';
 
 import useAuth from '../../hooks/useAuth';
 import useHeaderHeight from '../../hooks/useHeaderHeight';
+import useWindowWidth from '../../hooks/useWindowWidth';
 import { LOGIN_PATH } from '../pages/Login';
 import { AppContext } from '../ContextProvider';
 
 import classes from './header.module.css';
-import useWindowWidth from '../../hooks/useWindowWidth';
-import useClicks from '../../hooks/useClicks';
 
 
 interface Props {
@@ -40,17 +39,14 @@ export const Header = ({
     children,
 }: Props) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const { loading, counts: { red, blue } } = useContext(AppContext);
+    const { loading, counts: { red, blue }, setRedClicks, setBlueClicks } = useContext(AppContext);
 
     const navigate = useNavigate();
     const headerAnchorRef = useRef<HTMLDivElement>(null);
 
+    const [userDetails, _] = useAuth();
     const windowWidth = useWindowWidth();
     const headerHeight = useHeaderHeight();
-
-    const [_r, setRedClicks] = useClicks('red');
-    const [_b, setBlueClicks] = useClicks('blue');
-    const [userDetails, _u] = useAuth();
 
     // Event Handlers
     const onMenuClick = () => setDrawerOpen(true);
@@ -81,11 +77,20 @@ export const Header = ({
                             { isMobile
                                 ? <Typography variant='h6' className={classes.title}> RVB </Typography>
                                 : <>
-                                    <Button variant="contained" onClick={ () => setRedClicks(prev => ++prev) }>
+                                    <Button
+                                        variant="contained"
+                                        sx={{ width: 110 }}
+                                        onClick={ () => setRedClicks(prev => ++prev) }
+                                    >
                                         Red Team
                                     </Button>
                                     <Typography variant='h6' className={classes.title}> VS </Typography>
-                                    <Button variant="contained" color='secondary' onClick={ () => setBlueClicks(prev => ++prev) }>
+                                    <Button
+                                        variant="contained"
+                                        color='secondary'
+                                        sx={{ width: 110 }}
+                                        onClick={ () => setBlueClicks(prev => ++prev) }
+                                    >
                                         Blue Team
                                     </Button>
                                 </>
