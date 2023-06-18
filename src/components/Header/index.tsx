@@ -11,6 +11,7 @@ import Fab from '@mui/material/Fab';
 import MenuIcon from '@mui/icons-material/Menu';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import LinearProgress from '@mui/material/LinearProgress';
+import Badge from '@mui/material/Badge';
 
 import ScrollTop from './ScrollTop';
 import HideOnScroll from './HideOnScroll';
@@ -39,7 +40,7 @@ export const Header = ({
     children,
 }: Props) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const { loading, counts: { red, blue }, setRedClicks, setBlueClicks } = useContext(AppContext);
+    const { loading, counts: { red, blue }, redClicks, blueClicks, setRedClicks, setBlueClicks } = useContext(AppContext);
 
     const navigate = useNavigate();
     const headerAnchorRef = useRef<HTMLDivElement>(null);
@@ -72,7 +73,9 @@ export const Header = ({
                         </IconButton>
 
                         <div className={classes.titleContainer}>
-                            <Typography variant='body2' sx={{ mr: 2 }}> ({ red.toLocaleString("en-US") }) </Typography>
+                            <Badge badgeContent={ redClicks } sx={{ mr: 2 }} color='primary'>
+                                <Typography variant='body2'> ({ red.toLocaleString("en-US") }) </Typography>
+                            </Badge>
 
                             { isMobile
                                 ? <Typography variant='h6' className={classes.title}> RVB </Typography>
@@ -96,7 +99,9 @@ export const Header = ({
                                 </>
                             }
 
-                            <Typography variant='body2' sx={{ ml: 2 }}> ({ blue.toLocaleString("en-US") }) </Typography>
+                            <Badge badgeContent={ blueClicks } sx={{ ml: 2 }} color='secondary'>
+                                <Typography variant='body2'> ({ blue.toLocaleString("en-US") }) </Typography>
+                            </Badge>
                         </div>
                         { !!userDetails
                             ? <ProfileMenu />

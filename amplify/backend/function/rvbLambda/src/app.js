@@ -84,10 +84,20 @@ app.post('/rvb/click/:color', async (req, res, next) => {
             throw new Error('"Clicks" missing from request body.')
 
         const { userDetails: { username }} = req.body;
-        await updateColorCount(username, color, clicks);
-        await updateColorCount(GLOBAL_ID, color, clicks);
+        const userCounts = await updateColorCount(username, color, clicks);
+        const globalCounts = await updateColorCount(GLOBAL_ID, color, clicks);
 
-        res.json({ success: `Successfully incremented "${color}" by ${clicks}` });
+        res.json({
+            success: `Successfully incremented "${color}" by ${clicks}`,
+            global: {
+                red: globalCounts.Attributes.red,
+                blue: globalCounts.Attributes.blue,
+            },
+            user: {
+                red: userCounts.Attributes.red,
+                blue: userCounts.Attributes.blue,
+            },
+        });
     } catch (error) {
         return next(error);
     }
