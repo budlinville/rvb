@@ -14,3 +14,35 @@
     padding-left: 0.5rem;
     padding-right: 0.5rem;
 }
+
+.scoreContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scoreContainer.red {
+    margin-right: 1rem;
+}
+
+.scoreContainer.blue {
+    margin-left: 1rem;
+}
+
+.scoreBadge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score {
+    color: white;
+    text-shadow: none;
+    transition: color 1s ease-out, text-shadow 1s ease-out;
+}
+
+.scoreTransition {
+    color: rgb(255, 222, 35);
+    text-shadow: rgb(255, 238, 144) 0 0 10px;
+    transition: color 0.1s ease-in, text-shadow 0.1s ease-in;
+}
