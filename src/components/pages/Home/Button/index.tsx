@@ -1,9 +1,7 @@
-import { ReactNode, useContext } from 'react';
+import { ReactNode } from 'react';
 
 import classes from './button.module.css';
 import clickSound from '/click.mp3';
-import useClicks from '../../../../hooks/useClicks';
-import { AppContext } from '../../../ContextProvider';
 
 
 export type ColorT = 'red' | 'blue';
