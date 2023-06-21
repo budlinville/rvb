@@ -5,7 +5,19 @@
     align-items: center;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 821px) {
+    .buttonContainer {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 767px) and (orientation: landscape) {
+    .buttonContainer {
+        flex-direction: row;
+    }
+}
+
+@media only screen and (max-width: 1000px) and (orientation: portrait) {
     .buttonContainer {
         flex-direction: column;
     }

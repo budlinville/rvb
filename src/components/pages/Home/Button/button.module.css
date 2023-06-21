@@ -1,8 +1,44 @@
 :root {
-    --BUTTON-HEIGHT: 22rem;
-    --BUTTON-WIDTH: 22rem;
+    --BUTTON-SIZE: 35rem;
+    --BUTTON-HEIGHT: var(--BUTTON-SIZE);
+    --BUTTON-WIDTH: var(--BUTTON-SIZE);
     --BUTTON-OFFSET: 18px;
     --BORDER-RADIUS: 20%;
+}
+
+@media only screen and (max-width: 500px) {
+    /* CSS rules for mobile devices in portrait mode */
+    :root {
+        --BUTTON-SIZE: 15rem;
+    }
+}
+
+@media only screen and (min-width: 501px) and (max-width: 900px) and (orientation: portrait) {
+    /* CSS rules for mobile devices in portrait mode */
+    :root {
+        --BUTTON-SIZE: 17rem;
+    }
+}
+
+@media only screen and (min-width: 501px) and (max-width: 900px) and (orientation: landscape) {
+    /* CSS rules for mobile devices in landscape mode */
+    :root {
+        --BUTTON-SIZE: 15rem;
+    }
+}
+
+@media only screen and (min-width: 901px) and (max-width: 1200px) and (orientation: portrait){
+    /* CSS rules for tablets and small screens in portrait mode*/
+    :root {
+        --BUTTON-SIZE: 26rem;
+    }
+}
+
+@media only screen and (min-width: 901px) and (max-width: 1200px) and (orientation: landscape) {
+    /* CSS rules for tablets and small screens in landscape mode */
+    :root {
+        --BUTTON-SIZE: 18rem;
+    }
 }
 
 .pushable {
