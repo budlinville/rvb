@@ -41,8 +41,7 @@ app.get('/rvb', function(req, res) {
 
 app.get('/rvb/clicks/user/:username', async (req, res, next) => {
     try {
-        console.log(req)
-        const username = JSON.parse(req?.params?.username);
+        const username = req?.params?.username;
         userCounts = null;
         if (username) {
             userCounts = await getColorCounts(username);
@@ -89,7 +88,7 @@ app.post('/rvb/click/:color', async (req, res, next) => {
 
         const { clicks } = req.body;
         if (clicks === 0) {
-            res.json({ success: `No increment needed. "Clicks" value of "0" passes in` });
+            res.json({ success: `No increment needed. "Clicks" value of "0" passed in` });
             return;  // TODO: Is this necessary?
         }
 
@@ -103,7 +102,7 @@ app.post('/rvb/click/:color', async (req, res, next) => {
         let userCounts = null;
         const { userDetails } = req.body;
         if (userDetails?.username) {
-            userCounts = await updateColorCount(username, color, clicks);
+            userCounts = await updateColorCount(userDetails?.username, color, clicks);
         }
 
         res.json({
@@ -118,6 +117,7 @@ app.post('/rvb/click/:color', async (req, res, next) => {
             },
         });
     } catch (error) {
+        console.log(error)
         return next(error);
     }
 });
