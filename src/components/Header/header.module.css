@@ -1,11 +1,12 @@
 :root {
     --SCORE-TRANSITION-SECONDS: 0.5s;
+    --HEADER-GRADIENT: var(--BLUE-HEADER-GRADIENT-LIGHT);
 }
 
 .toolbar {
     display: flex;
     justify-content: space-between;
-    background: var(--BLUE-HEADER-GRADIENT-LIGHT)
+    background: var(--HEADER-GRADIENT);
 }
 
 .titleContainer {

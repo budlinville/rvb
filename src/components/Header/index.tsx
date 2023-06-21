@@ -1,5 +1,6 @@
-import { ReactElement, useContext, useRef, useState } from 'react';
+import { ReactElement, useContext, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useLocalStorage } from 'usehooks-ts';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
@@ -22,6 +23,7 @@ import useAuth from '../../hooks/useAuth';
 import useHeaderHeight from '../../hooks/useHeaderHeight';
 import { LOGIN_PATH } from '../pages/Login';
 import { AppContext } from '../ContextProvider';
+import { DARK_MODE } from '../../local-storage/keys';
 
 import classes from './header.module.css';
 
@@ -32,26 +34,51 @@ interface Props {
     children: ReactElement;
 }
 
-
 export const Header = ({
     enableHideOnScroll=true,
     enableScrollTop=true,
     children,
 }: Props) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const { loading, counts: { red, blue } } = useContext(AppContext);
+    const {
+        loading,
+        counts: { red, blue },
+        userCounts: { red: userRed, blue: userBlue }
+    } = useContext(AppContext);
 
     const navigate = useNavigate();
     const headerAnchorRef = useRef<HTMLDivElement>(null);
-
-    const [userDetails, _] = useAuth();
+    const [userDetails, _a] = useAuth();
     const headerHeight = useHeaderHeight();
+    const [isDarkMode, _d] = useLocalStorage(DARK_MODE, false);
+
+    const headerLightRed = getComputedStyle(document.body).getPropertyValue('--RED-HEADER-GRADIENT-LIGHT');
+    const headerLightBlue = getComputedStyle(document.body).getPropertyValue('--BLUE-HEADER-GRADIENT-LIGHT');
+    const headerDarkRed = getComputedStyle(document.body).getPropertyValue('--RED-HEADER-GRADIENT-DARK');
+    const headerDarkBlue = getComputedStyle(document.body).getPropertyValue('--BLUE-HEADER-GRADIENT-DARK');
+
+    const getHeaderGradient = (isRedTeam: boolean, isDarkMode: boolean) => {
+        if (isDarkMode) {
+            if (isRedTeam) return headerDarkRed;
+            return headerDarkBlue;
+        } else {
+            if (isRedTeam) return headerLightRed;
+            return headerLightBlue;
+        }
+    }
+
+    useEffect(() => {
+        const isRedTeam = userRed > userBlue;
+        const headerCSS = getHeaderGradient(isRedTeam, isDarkMode);
+        document.body.style.setProperty('--HEADER-GRADIENT', headerCSS);
+
+    }, [isDarkMode, userRed, userBlue]);
 
     // Event Handlers
     const onMenuClick = () => setDrawerOpen(true);
     const onLoginClick = () => navigate(LOGIN_PATH);
 
-    const redShare = Math.round(red / (red + blue) * 100)
+    const redShare = Math.round(red / (red + blue) * 100);
 
     return (
         <>
