@@ -12,6 +12,7 @@ import { dark, light, setAmplifyDarkMode } from './themes/index.ts';
 import { DARK_MODE } from './local-storage/keys.ts';
 import ContextProvider from './components/ContextProvider.tsx';
 import CountFetcher from './components/CountFetcher.tsx';
+import Background from './components/Background/index.tsx';
 
 
 Amplify.configure(config);
@@ -29,7 +30,9 @@ export const App = () => {
                 <ThemeProvider theme={ isDarkMode ? dark : light }>
                     <ContextProvider>
                         <CountFetcher>
-                            <Router />
+                            <Background>
+                                <Router />
+                            </Background>
                         </CountFetcher>
                     </ContextProvider>
                 </ThemeProvider>

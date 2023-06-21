@@ -1,4 +1,4 @@
-import { ReactElement, useContext, useEffect, useRef, useState } from 'react';
+import { ReactElement, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useLocalStorage } from 'usehooks-ts';
 
@@ -52,10 +52,10 @@ export const Header = ({
     const headerHeight = useHeaderHeight();
     const [isDarkMode, _d] = useLocalStorage(DARK_MODE, false);
 
-    const headerLightRed = getComputedStyle(document.body).getPropertyValue('--RED-HEADER-GRADIENT-LIGHT');
-    const headerLightBlue = getComputedStyle(document.body).getPropertyValue('--BLUE-HEADER-GRADIENT-LIGHT');
-    const headerDarkRed = getComputedStyle(document.body).getPropertyValue('--RED-HEADER-GRADIENT-DARK');
-    const headerDarkBlue = getComputedStyle(document.body).getPropertyValue('--BLUE-HEADER-GRADIENT-DARK');
+    const headerLightRed = useMemo(() => getComputedStyle(document.body).getPropertyValue('--RED-HEADER-GRADIENT-LIGHT'), []);
+    const headerLightBlue = useMemo(() => getComputedStyle(document.body).getPropertyValue('--BLUE-HEADER-GRADIENT-LIGHT'), []);
+    const headerDarkRed = useMemo(() => getComputedStyle(document.body).getPropertyValue('--RED-HEADER-GRADIENT-DARK'), []);
+    const headerDarkBlue = useMemo(() => getComputedStyle(document.body).getPropertyValue('--BLUE-HEADER-GRADIENT-DARK'), []);
 
     const getHeaderGradient = (isRedTeam: boolean, isDarkMode: boolean) => {
         if (isDarkMode) {

@@ -1,0 +1,35 @@
+/* Will get reset in Background/index.tsx */
+:root {
+    --BACKGROUND-COLOR-1: white;
+    --BACKGROUND-COLOR-2: white;
+    --BACKGROUND-COLOR-3: white;
+    --BACKGROUND-COLOR-4: white;
+    --BACKGROUND-COLOR-5: white;
+    --BACKGROUND-COLOR-6: white;
+}
+
+.background {
+    height: 100vh;
+	background: linear-gradient(
+        -45deg,
+        var(--BACKGROUND-COLOR-1),
+        var(--BACKGROUND-COLOR-2),
+        var(--BACKGROUND-COLOR-3),
+        var(--BACKGROUND-COLOR-4),
+        var(--BACKGROUND-COLOR-5),
+        var(--BACKGROUND-COLOR-6));
+	background-size: 400% 400%;
+	animation: gradient 25s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
