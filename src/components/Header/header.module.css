@@ -1,3 +1,7 @@
+:root {
+    --SCORE-TRANSITION-SECONDS: 0.5s;
+}
+
 .toolbar {
     display: flex;
     justify-content: space-between;
@@ -38,11 +42,11 @@
 .score {
     color: white;
     text-shadow: none;
-    transition: color 0.5s ease-out, text-shadow 0.5s ease-out;
+    transition: color var(--SCORE-TRANSITION-SECONDS) ease-out, text-shadow var(--SCORE-TRANSITION-SECONDS) ease-out;
 }
 
 .scoreTransition {
     color: rgb(255, 222, 35);
     text-shadow: rgb(255, 238, 144) 0 0 10px;
-    transition: color 0.5s ease-in, text-shadow 0.5s ease-in;
+    transition: color var(--SCORE-TRANSITION-SECONDS) ease-in, text-shadow var(--SCORE-TRANSITION-SECONDS) ease-in;
 }

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "vite",
     "dev": "vite --force",
+    "test": "vite --port 4000",
     "remote": "vite --host",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",

@@ -36,24 +36,37 @@ app.use(function(req, res, next) {
 
 app.get('/rvb', function(req, res) {
     // Add your code here
-    res.json({success: 'get call succeed!', url: req.url});
+    res.json({ success: 'get call succeed!', url: req.url });
 });
 
-app.get('/rvb/clicks/', async (req, res, next) => {
+app.get('/rvb/clicks/user/:username', async (req, res, next) => {
     try {
-        const { userDetails: { username } } = req?.body;
-        const response = await getColorCounts(username);
-        res.json({ counts: response })
+        console.log(req)
+        const username = JSON.parse(req?.params?.username);
+        userCounts = null;
+        if (username) {
+            userCounts = await getColorCounts(username);
+        }
+        const globalCounts = await getColorCounts(GLOBAL_ID);
+
+        res.json({
+            counts: {
+                user: userCounts,
+                global: globalCounts,
+            }
+        });
     } catch (error) {
+        console.log(error)
         return next(error);
     }
 });
 
-app.get('/rvb/clicks/global', async (req, res, next) => {
+app.get('/rvb/clicks', async (req, res, next) => {
     try {
         const response = await getColorCounts(GLOBAL_ID);
         res.json({ counts: response })
     } catch (error) {
+        console.log({error})
         return next(error);
     }
 });
@@ -83,9 +96,15 @@ app.post('/rvb/click/:color', async (req, res, next) => {
         if (!clicks)
             throw new Error('"Clicks" missing from request body.')
 
-        const { userDetails: { username }} = req.body;
-        const userCounts = await updateColorCount(username, color, clicks);
+        // Get global information
         const globalCounts = await updateColorCount(GLOBAL_ID, color, clicks);
+
+        // Get user information
+        let userCounts = null;
+        const { userDetails } = req.body;
+        if (userDetails?.username) {
+            userCounts = await updateColorCount(username, color, clicks);
+        }
 
         res.json({
             success: `Successfully incremented "${color}" by ${clicks}`,
@@ -93,7 +112,7 @@ app.post('/rvb/click/:color', async (req, res, next) => {
                 red: globalCounts.Attributes.red,
                 blue: globalCounts.Attributes.blue,
             },
-            user: {
+            user: !userCounts ? null : {
                 red: userCounts.Attributes.red,
                 blue: userCounts.Attributes.blue,
             },

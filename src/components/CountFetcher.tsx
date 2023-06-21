@@ -6,7 +6,7 @@ import useAuth from "../hooks/useAuth";
 import { AppContext, AppContextT } from "./ContextProvider";
 
 
-const TEN_SECONDS = 3000;
+const TEN_SECONDS = 10000;
 
 interface Props {
     children: ReactNode,
@@ -14,15 +14,28 @@ interface Props {
 
 const CountFetcher = ({ children }: Props) => {
     const [userDetails, _] = useAuth();
-    const { counts, setCounts } = useContext<AppContextT>(AppContext)
+    const { counts, userCounts, setCounts, setUserCounts } = useContext<AppContextT>(AppContext)
 
     useEffect(() => {
         const fetchClicks = async () => {
-            const response = await API.get(RVB_API, '/rvb/clicks/global', { userDetails });
-            if (response?.counts) {
-                const { red, blue } = response?.counts;
-                if (red !== counts.red || blue !== counts.blue)
-                    setCounts({ red, blue })
+            try {
+                const response = await API.get(RVB_API, `/rvb/clicks/user/${userDetails?.username || null}`);
+                if (response?.counts) {
+                        if (response?.counts?.global) {
+                            const { red: globalRed, blue: globalBlue } = response?.counts.global;
+                            if (globalRed !== counts.red || globalBlue !== counts.blue)
+                                setCounts({ red: globalRed, blue: globalBlue });
+                        }
+
+                        if (response?.counts?.user) {
+                            const { red: userRed, blue: userBlue } = response?.counts.user;
+                            if (userRed !== userCounts.red || userBlue !== userCounts.blue)
+                                setUserCounts({ red: userRed, blue: userBlue });
+                        }
+
+                }
+            } catch (e) {
+                console.log(e)
             }
         };
 
