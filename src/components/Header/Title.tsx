@@ -18,7 +18,7 @@ const Title = () => {
             : <>
                 <Button
                     variant="contained"
-                    sx={{ width: 110 }}
+                    sx={{ width: 120 }}
                     onClick={ () => setRedClicks(prev => ++prev) }
                 >
                     Red Team
@@ -27,7 +27,7 @@ const Title = () => {
                 <Button
                     variant="contained"
                     color='secondary'
-                    sx={{ width: 110 }}
+                    sx={{ width: 120 }}
                     onClick={ () => setBlueClicks(prev => ++prev) }
                 >
                     Blue Team

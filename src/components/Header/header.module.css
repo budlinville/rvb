@@ -50,3 +50,16 @@
     text-shadow: rgb(255, 238, 144) 0 0 10px;
     transition: color var(--SCORE-TRANSITION-SECONDS) ease-in, text-shadow var(--SCORE-TRANSITION-SECONDS) ease-in;
 }
+
+.headerSideItemContainer {
+    display: flex;
+    width: 140px;
+}
+
+.headerSideItemContainer.left {
+    justify-content: flex-start;
+}
+
+.headerSideItemContainer.right {
+    justify-content: flex-end;
+}

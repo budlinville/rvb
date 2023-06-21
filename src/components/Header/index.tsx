@@ -60,14 +60,17 @@ export const Header = ({
             <HideOnScroll enable={ enableHideOnScroll }>
                 <AppBar>
                     <Toolbar className={classes.toolbar} style={{ height: headerHeight }}>
-                        <IconButton aria-label='menu'
-                            edge    ='start'
-                            color   ='inherit'
-                            sx      ={{ mr: 2 }}
-                            onClick ={ onMenuClick }
-                        >
-                            <MenuIcon />
-                        </IconButton>
+                        <div className={`${classes.headerSideItemContainer} ${classes.left}`}>
+                            <IconButton aria-label='menu'
+                                edge    ='start'
+                                color   ='inherit'
+                                sx      ={{ mr: 2 }}
+                                onClick ={ onMenuClick }
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                        </div>
+
 
                         <div className={classes.titleContainer}>
                             <Score color='red'/>
@@ -75,10 +78,12 @@ export const Header = ({
                             <Score color='blue'/>
                         </div>
 
-                        { !!userDetails
-                            ? <ProfileMenu />
-                            : <Button color='inherit' onClick={ onLoginClick }> Login / Signup </Button>
-                        }
+                        <div className={`${classes.headerSideItemContainer} ${classes.right}`}>
+                            { !!userDetails
+                                ? <ProfileMenu />
+                                : <Button color='inherit' onClick={ onLoginClick }> Login / Signup </Button>
+                            }
+                        </div>
                     </Toolbar>
                     <LinearProgress variant={ loading ? 'indeterminate' : 'determinate' } value={redShare} />
                 </AppBar>
