@@ -25,7 +25,7 @@ const updateHourlyColorCount = async (timestamp, red, blue) => {
     const response = await dynamo.update({
         TableName: 'rvb-click',
         Key: { id: GLOBAL_ID },
-        UpdateExpression: 'SET ts_hourly.#ts = if_not_exists(ts_hourly.#ts, :colors)',
+        UpdateExpression: 'SET ts_hourly.#ts = :colors',
         ExpressionAttributeNames: {
             '#ts': timestamp,
         },
