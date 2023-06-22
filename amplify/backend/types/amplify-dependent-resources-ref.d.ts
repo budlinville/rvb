@@ -20,6 +20,14 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "function": {
+    "rvbClickHourly": {
+      "Arn": "string",
+      "CloudWatchEventRule": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
     "rvbLambda": {
       "Arn": "string",
       "LambdaExecutionRole": "string",

@@ -50,6 +50,12 @@
     }
   },
   "function": {
+    "rvbClickHourly": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "rvbLambda": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -57,6 +63,22 @@
     }
   },
   "parameters": {
+    "AMPLIFY_function_rvbClickHourly_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "rvbClickHourly"
+        }
+      ]
+    },
+    "AMPLIFY_function_rvbClickHourly_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "rvbClickHourly"
+        }
+      ]
+    },
     "AMPLIFY_function_rvbLambda_deploymentBucketName": {
       "usedBy": [
         {
