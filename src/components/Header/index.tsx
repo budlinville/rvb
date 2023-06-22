@@ -68,6 +68,7 @@ export const Header = ({
     }
 
     useEffect(() => {
+        console.log(userBlue, userRed)
         const isRedTeam = userRed > userBlue;
         const headerCSS = getHeaderGradient(isRedTeam, isDarkMode);
         document.body.style.setProperty('--HEADER-GRADIENT', headerCSS);

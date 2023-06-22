@@ -22,7 +22,7 @@
     --BLUE-TEXT-ACCENT-DARK: rgb(0, 0, 100);
     --BLUE-BUTTON-GRADIENT: radial-gradient(var(--LIGHT-BLUE), var(--BLUE) 30%, var(--DARK-BLUE) 90%);
     --BLUE-HEADER-GRADIENT-LIGHT: linear-gradient(to bottom right,var(--LIGHT-BLUE), var(--LIGHTEST-BLUE) 100%);
-    --BLUE-HEADER-GRADIENT-DARK: linear-gradient(to bottom right,var(--DARK-BLUE), var(--LIGHTEST-BLUE) 100%);
+    --BLUE-HEADER-GRADIENT-DARK: linear-gradient(to bottom right,var(--BLUE), #1f1f1f 100%);
 
     --LIGHTEST-RED: rgb(255, 120, 120);
     --LIGHT-RED: rgb(255, 60, 60);
@@ -35,7 +35,7 @@
     --RED-TEXT-ACCENT-DARK: rgb(120, 0, 0);
     --RED-BUTTON-GRADIENT: radial-gradient(var(--LIGHT-RED), var(--RED) 30%, var(--DARK-RED) 90%);
     --RED-HEADER-GRADIENT-LIGHT: linear-gradient(to bottom right,var(--LIGHT-RED), var(--LIGHTEST-RED) 100%);
-    --RED-HEADER-GRADIENT-DARK: linear-gradient(to bottom right,var(--DARK-RED), var(--LIGHTEST-RED) 100%);
+    --RED-HEADER-GRADIENT-DARK: linear-gradient(to bottom right,var(--RED), #1f1f1f 100%);
 }
 
 body {
