@@ -19,7 +19,6 @@ import ProfileMenu from './ProfileMenu';
 import Title from './Title';
 import Score from './Score';
 
-import useAuth from '../../hooks/useAuth';
 import useHeaderHeight from '../../hooks/useHeaderHeight';
 import { LOGIN_PATH } from '../pages/Login';
 import { AppContext } from '../ContextProvider';
@@ -41,6 +40,7 @@ export const Header = ({
 }: Props) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const {
+        userDetails,
         loading,
         counts: { red, blue },
         userCounts: { red: userRed, blue: userBlue }
@@ -48,7 +48,6 @@ export const Header = ({
 
     const navigate = useNavigate();
     const headerAnchorRef = useRef<HTMLDivElement>(null);
-    const [userDetails, _a] = useAuth();
     const headerHeight = useHeaderHeight();
     const [isDarkMode, _d] = useLocalStorage(DARK_MODE, false);
 

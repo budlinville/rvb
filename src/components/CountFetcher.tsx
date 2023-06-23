@@ -2,7 +2,6 @@ import { ReactNode, useContext, useEffect } from "react";
 
 import API from '../api';
 import RVB_API from "../api/sources";
-import useAuth from "../hooks/useAuth";
 import { AppContext, AppContextT } from "./ContextProvider";
 
 
@@ -13,8 +12,13 @@ interface Props {
 }
 
 const CountFetcher = ({ children }: Props) => {
-    const [userDetails, _] = useAuth();
-    const { counts, userCounts, setCounts, setUserCounts } = useContext<AppContextT>(AppContext)
+    const {
+        userDetails,
+        counts,
+        userCounts,
+        setCounts,
+        setUserCounts
+    } = useContext<AppContextT>(AppContext)
 
     useEffect(() => {
         const fetchClicks = async () => {

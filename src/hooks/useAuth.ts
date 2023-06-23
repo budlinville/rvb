@@ -9,7 +9,7 @@ export interface UserDetailsT {
 };
 
 
-const useAuth = (): [UserDetailsT | null, Dispatch<SetStateAction<UserDetailsT | null>>] => {
+const useAuth = (): UserDetailsT | null => {
     const [userDetails, setUserDetails] = useState<UserDetailsT | null>(null);
     
     useEffect(() => {
@@ -33,7 +33,7 @@ const useAuth = (): [UserDetailsT | null, Dispatch<SetStateAction<UserDetailsT |
 
     }, [Auth, userDetails, setUserDetails]);
 
-    return [userDetails, setUserDetails];
+    return userDetails;
 };
 
 

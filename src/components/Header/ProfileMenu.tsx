@@ -1,4 +1,4 @@
-import { useState, MouseEvent as rMouseEvent } from 'react';
+import { useState, MouseEvent as rMouseEvent, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
 
@@ -8,14 +8,14 @@ import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
-import useAuth from '../../hooks/useAuth';
 import { HOME_PATH } from '../pages/Home';
+import { AppContext } from '../ContextProvider';
 
 import logo from '/rvb.png';
 
 
 const ProfileMenu = () => {
-    const [userDetails, _] = useAuth();
+    const { userDetails } = useContext(AppContext)
 
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);

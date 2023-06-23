@@ -1,5 +1,6 @@
 import { Dispatch, ReactNode, SetStateAction, createContext, useState } from "react";
 import useClicks from "../hooks/useClicks";
+import useAuth, { UserDetailsT } from "../hooks/useAuth";
 
 //----------------------------------------------------------------------------------------------------------------------
 export interface CountsT { red: number, blue: number };
@@ -7,6 +8,7 @@ export const initialCounts: CountsT = { red: 0, blue: 0 }
 
 //----------------------------------------------------------------------------------------------------------------------
 export interface AppContextT {
+    userDetails: UserDetailsT | null,
     loading: boolean,
     counts: CountsT,
     userCounts: CountsT,
@@ -20,6 +22,7 @@ export interface AppContextT {
 };
 
 const initialAppContext: AppContextT = {
+    userDetails: null,
     loading: false,
     counts: initialCounts,
     userCounts: initialCounts,
@@ -43,10 +46,13 @@ const ContextProvider = ({ children }: ContextProviderProps) => {
     const [loading, setLoading] = useState<boolean>(false);
     const [counts, setCounts] = useState<CountsT>(initialCounts);
     const [userCounts, setUserCounts] = useState<CountsT>(initialCounts);
+
+    const userDetails = useAuth();
     const [redClicks, setRedClicks] = useClicks('red');
     const [blueClicks, setBlueClicks] = useClicks('blue');
 
     const value = {
+        userDetails,
         loading,
         counts,
         userCounts,
