@@ -52,6 +52,8 @@
     cursor: pointer;
     outline-offset: var(--BUTTON-OFFSET);
     transition: filter 250ms;
+
+    -webkit-tap-highlight-color: transparent;
 }
 
 .shadow {
