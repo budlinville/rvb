@@ -13,7 +13,7 @@ const updateColorCount = async (userId, color, value) => {
         ReturnValues: 'ALL_NEW',
     }).promise();
 
-    return response;
+    return response.Attributes;
 };
 
 
@@ -27,8 +27,19 @@ const getColorCounts = async (userId) => {
     return response.Item;
 };
 
+const getHourlyColorCounts = async (userId) => {
+    const response = await dynamo.get({
+        TableName: 'rvb-click',
+        Key: { id: userId },
+        ProjectionExpression: 'clicks_hourly'
+    }).promise();
+
+    return response.Item;
+}
+
 
 module.exports = {
     updateColorCount,
     getColorCounts,
+    getHourlyColorCounts,
 };

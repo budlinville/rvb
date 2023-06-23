@@ -10,11 +10,11 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
 
-const { updateColorCount, getColorCounts } = require('./db/click');
+const db = require('./db/click');
 
 
 // Constants
-const GLOBAL_ID = 'global'
+const GLOBAL_ID = 'global';
 
 
 // declare a new express app
@@ -44,9 +44,9 @@ app.get('/rvb/clicks/user/:username', async (req, res, next) => {
         const username = req?.params?.username;
         userCounts = null;
         if (username) {
-            userCounts = await getColorCounts(username);
+            userCounts = await db.getColorCounts(username);
         }
-        const globalCounts = await getColorCounts(GLOBAL_ID);
+        const globalCounts = await db.getColorCounts(GLOBAL_ID);
 
         res.json({
             counts: {
@@ -55,17 +55,27 @@ app.get('/rvb/clicks/user/:username', async (req, res, next) => {
             }
         });
     } catch (error) {
-        console.log(error)
+        console.log(error);
         return next(error);
     }
 });
 
 app.get('/rvb/clicks', async (req, res, next) => {
     try {
-        const response = await getColorCounts(GLOBAL_ID);
-        res.json({ counts: response })
+        const response = await db.getColorCounts(GLOBAL_ID);
+        res.json({ counts: response });
     } catch (error) {
-        console.log({error})
+        console.log({error});
+        return next(error);
+    }
+});
+
+app.get('/rvb/clicks/hourly', async (req, res, next) => {
+    try {
+        const response = await db.getHourlyColorCounts(GLOBAL_ID);
+        res.json(response);
+    } catch (error) {
+        console.log({error});
         return next(error);
     }
 });
@@ -96,24 +106,24 @@ app.post('/rvb/click/:color', async (req, res, next) => {
             throw new Error('"Clicks" missing from request body.')
 
         // Get global information
-        const globalCounts = await updateColorCount(GLOBAL_ID, color, clicks);
+        const globalCounts = await db.updateColorCount(GLOBAL_ID, color, clicks);
 
         // Get user information
         let userCounts = null;
         const { userDetails } = req.body;
         if (userDetails?.username) {
-            userCounts = await updateColorCount(userDetails?.username, color, clicks);
+            userCounts = await db.updateColorCount(userDetails?.username, color, clicks);
         }
 
         res.json({
             success: `Successfully incremented "${color}" by ${clicks}`,
             global: {
-                red: globalCounts.Attributes.red,
-                blue: globalCounts.Attributes.blue,
+                red: globalCounts.red,
+                blue: globalCounts.blue,
             },
             user: !userCounts ? null : {
-                red: userCounts.Attributes.red,
-                blue: userCounts.Attributes.blue,
+                red: userCounts.red,
+                blue: userCounts.blue,
             },
         });
     } catch (error) {
