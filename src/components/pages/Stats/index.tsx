@@ -11,6 +11,8 @@ import LineGraph, { ClickDataT } from "../../common/graphs/LineGraph";
 import { AppContext, CountsT } from "../../ContextProvider";
 
 import classes from './stats.module.css';
+import useWindowWidth from "../../../hooks/useWindowWidth";
+import useWindowHeight from "../../../hooks/useWindowHeight";
 
 
 interface HourlyClicksT {
@@ -51,6 +53,11 @@ const Stats = () => {
     const [data, setData] = useState<ClickDataT[]>([]);
     const { counts } = useContext(AppContext);
 
+    const windowWidth = useWindowWidth();
+    const windowHeight = useWindowHeight();
+
+    const onMobile = windowHeight > windowWidth;
+
     useEffect(() => {
         const fetchHourlyClicks = async () => {
             try {
@@ -66,10 +73,10 @@ const Stats = () => {
     return (
         <Container>
             <Box sx={{ my: 2 }}>
-                <Typography variant="h3" component="div"> Stats </Typography>
+                <Typography style={{ alignSelf: 'center' }}variant="h3" component="div"> Stats </Typography>
                 <Divider />
                 <div className={classes.chartContainer}>
-                    <LineGraph data={data} height={400} width='80%' />
+                    <LineGraph data={data} height={400} width={ onMobile ? 600 : '80%' } />
                 </div>
             </Box>
         </Container>

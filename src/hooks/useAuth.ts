@@ -28,10 +28,12 @@ const useAuth = (): UserDetailsT | null => {
             }
         }
 
-        getUserDetails();
+        if (userDetails === null) {
+            getUserDetails();
+        }
         Hub.listen('auth', () => getUserDetails());
 
-    }, [Auth, userDetails, setUserDetails]);
+    }, [userDetails, setUserDetails]);
 
     return userDetails;
 };

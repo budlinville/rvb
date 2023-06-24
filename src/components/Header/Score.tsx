@@ -15,6 +15,7 @@ const Score = ({ color }: Props) => {
     const [scoreTransitioning, setScoreTransitioning] = useState(false);
     const [userScoreTransitioning, setUserScoreTransitioning] = useState(false);
     const {
+        userDetails,
         counts: { red, blue },
         userCounts: { red: userRed, blue: userBlue },
         redClicks,
@@ -48,6 +49,7 @@ const Score = ({ color }: Props) => {
 
     const containerClassName = `${classes.scoreContainer} ${classes[color]}`;
     const scoreClassName = scoreTransitioning ? classes.scoreTransition : classes.score;
+    const userScoreClassName = userScoreTransitioning ? classes.scoreTransition : classes.score;
 
     return (
         <div className={containerClassName}>
@@ -57,7 +59,7 @@ const Score = ({ color }: Props) => {
                 style={{ alignItems: color === 'red' ? 'flex-end' : 'flex-start' }}
             >
                 <Typography className={scoreClassName} variant='body2'> { countsDisplayValue.toLocaleString("en-US") } </Typography>
-                <Typography className={scoreClassName} variant='body2'> ({ userCountsDisplayValue.toLocaleString("en-US") }) </Typography>
+                { userDetails && <Typography className={userScoreClassName} variant='body2'> ({ userCountsDisplayValue.toLocaleString("en-US") }) </Typography> }
             </Badge>
         </div>
     );

@@ -1,5 +1,14 @@
-import { CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import {
+    CartesianGrid,
+    Line,
+    LineChart,
+    ResponsiveContainer,
+    Tooltip,
+    XAxis,
+    YAxis
+} from "recharts";
 import { useLocalStorage } from "usehooks-ts";
+
 import { DARK_MODE } from "../../../local-storage/keys";
 
 export interface ClickDataT {
@@ -29,9 +38,10 @@ const LineGraph = ({ data, height, width }: Props) => {
     }
 
     const tooltipStyle = isDarkMode
-        ? { backgroundColor: "#222", color: "#fff", border: "1px solid #fff" }
-        : { backgroundColor: "#fff", color: "#333", border: "1px solid #ccc", borderColor: "#333" };
+        ? { backgroundColor: '#222', color: '#fff', border: '1px solid #fff' }
+        : { backgroundColor: '#fff', color: '#333', border: '1px solid #333' };
 
+    // TODO: Working here.. need to make this scrollable on mobile
     return (
         <ResponsiveContainer height={height} width={width}>
             <LineChart data={data}>

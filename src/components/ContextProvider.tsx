@@ -48,8 +48,8 @@ const ContextProvider = ({ children }: ContextProviderProps) => {
     const [userCounts, setUserCounts] = useState<CountsT>(initialCounts);
 
     const userDetails = useAuth();
-    const [redClicks, setRedClicks] = useClicks('red');
-    const [blueClicks, setBlueClicks] = useClicks('blue');
+    const [redClicks, setRedClicks] = useClicks('red', userDetails, setCounts, setUserCounts);
+    const [blueClicks, setBlueClicks] = useClicks('blue', userDetails, setCounts, setUserCounts);
 
     const value = {
         userDetails,

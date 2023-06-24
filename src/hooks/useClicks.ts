@@ -1,10 +1,10 @@
-import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import { post } from "../api";
 import RVB_API from "../api/sources";
 import { ColorT } from "../components/pages/Home/Button";
 import { UserDetailsT } from "./useAuth";
-import { AppContext } from "../components/ContextProvider";
+import { CountsT } from "../components/ContextProvider";
 
 
 const ONE_SECOND = 1000;
@@ -16,10 +16,14 @@ interface RvbClickT {
 }
 
 
-const useClicks = (color: ColorT): [number, Dispatch<SetStateAction<number>>] => {
+const useClicks = (
+    color: ColorT,
+    userDetails: UserDetailsT | null,
+    setCounts: Dispatch<SetStateAction<CountsT>>,
+    setUserCounts: Dispatch<SetStateAction<CountsT>>,
+): [number, Dispatch<SetStateAction<number>>] => {
     const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
     const [clicks, setClicks] = useState<number>(0);
-    const { userDetails, setCounts } = useContext(AppContext);
 
     const path = `/rvb/click/${color}`
 
@@ -29,7 +33,9 @@ const useClicks = (color: ColorT): [number, Dispatch<SetStateAction<number>>] =>
                 const response = await post(RVB_API, path, { userDetails, clicks } as RvbClickT);
                 if (response?.global?.red && response?.global?.blue) {
                     const { red, blue } = response.global;
+                    const { red: userRed, blue: userBlue } = response?.user || { red: 0, blue: 0 };
                     setCounts({ red, blue });
+                    setUserCounts({ red: userRed, blue: userBlue });
                 }
                 setClicks(0);
             }
