@@ -15,7 +15,11 @@
     align-items: center;
 }
 
-.title {
+.titleAbbreviated {
+    color: rgb(255, 222, 35);
+}
+
+.vs {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
 }

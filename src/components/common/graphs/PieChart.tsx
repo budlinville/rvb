@@ -1,0 +1,45 @@
+import { PieChart, Pie, Tooltip, Cell } from "recharts";
+import useWindowWidth from "../../../hooks/useWindowWidth";
+
+interface DataT {
+    name: string,
+    value: number,
+    color: string,
+}
+
+interface Props {
+    data: DataT[],
+    height: number,
+}
+
+
+const RvbPieChart = ({ data, height }: Props) => {
+    const width = useWindowWidth() * 0.8;
+  return (
+    <div style={{ overflow: "hidden", width: '100%' }}>
+    <style>{`.recharts-wrapper { margin: 0 auto !important; }`}</style>
+      <PieChart height={height} width={width}>
+        <Pie
+            data={data}
+            dataKey="value"
+            nameKey="name"
+            cx="50%"
+            cy="50%"
+            outerRadius={80}
+            label={ ({ value, name}) => `${name.toUpperCase()}: ${value}` }
+            stroke='rgb(255, 222, 35)'
+            strokeWidth={2}
+            labelLine={{ stroke: "yellow" }}
+        >
+            {data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={entry.color} />
+            ))}
+        </Pie>
+        <Tooltip />
+        {/* <Legend /> */}
+      </PieChart>
+    </div>
+  );
+};
+
+export default RvbPieChart;

@@ -13,6 +13,7 @@ import { AppContext, CountsT } from "../../ContextProvider";
 import classes from './stats.module.css';
 import useWindowWidth from "../../../hooks/useWindowWidth";
 import useWindowHeight from "../../../hooks/useWindowHeight";
+import PieChart from "../../common/graphs/PieChart";
 
 
 interface HourlyClicksT {
@@ -22,7 +23,7 @@ interface HourlyClicksT {
     }
 };
 
-const formatData = (hourlyClicks: HourlyClicksT, currentCounts: CountsT): ClickDataT[] => {
+const formatLineData = (hourlyClicks: HourlyClicksT, currentCounts: CountsT): ClickDataT[] => {
     // Format historical data
     const data = Object.entries(hourlyClicks).reduce<ClickDataT[]>((acc, [ts, clicks]) => {
         const dataItem: ClickDataT = {
@@ -48,10 +49,19 @@ const formatData = (hourlyClicks: HourlyClicksT, currentCounts: CountsT): ClickD
     return data;
 }
 
+const formatPieData = (counts: CountsT) => {
+    return Object.entries(counts).map(([key, value]) => ({
+        name: key,
+        value,
+        color: key,
+    }));
+}
 
 const Stats = () => {
-    const [data, setData] = useState<ClickDataT[]>([]);
+    const [lineData, setLineData] = useState<ClickDataT[]>([]);
     const { counts } = useContext(AppContext);
+
+    const pieData = formatPieData(counts);
 
     const windowWidth = useWindowWidth();
     const windowHeight = useWindowHeight();
@@ -62,7 +72,7 @@ const Stats = () => {
         const fetchHourlyClicks = async () => {
             try {
                 const response: { clicks_hourly: HourlyClicksT } = await API.get(RVB_API, `/rvb/clicks/hourly`);
-                setData(formatData(response.clicks_hourly, counts));
+                setLineData(formatLineData(response.clicks_hourly, counts));
             } catch (e) {
                 console.log(e)
             }
@@ -73,10 +83,15 @@ const Stats = () => {
     return (
         <Container>
             <Box sx={{ my: 2 }}>
-                <Typography style={{ alignSelf: 'center' }}variant="h3" component="div"> Stats </Typography>
+                <Typography variant="h3" component="div"> Stats </Typography>
                 <Divider />
-                <div className={classes.chartContainer}>
-                    <LineGraph data={data} height={400} width={ onMobile ? 600 : '80%' } />
+
+                <div className={classes.pieChartContainer}>
+                    <PieChart data={pieData} height={300} />
+                </div>
+
+                <div className={classes.lineGraphContainer}>
+                    <LineGraph data={lineData} height={400} width={ onMobile ? 600 : '80%' } />
                 </div>
             </Box>
         </Container>

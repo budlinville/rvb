@@ -14,7 +14,7 @@ const Title = () => {
     const isMobile = windowWidth < 600;
 
     return isMobile
-            ? <Typography variant='h6' className={classes.title}> RVB </Typography>
+            ? <Typography variant='h6' className={classes.titleAbbreviated}> RVB </Typography>
             : <>
                 <Button
                     variant="contained"
@@ -23,7 +23,7 @@ const Title = () => {
                 >
                     Red Team
                 </Button>
-                <Typography variant='h6' className={classes.title}> VS </Typography>
+                <Typography variant='h6' className={classes.vs}> VS </Typography>
                 <Button
                     variant="contained"
                     color='secondary'

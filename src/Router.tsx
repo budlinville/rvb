@@ -49,7 +49,7 @@ const Router = () => {
                 { route(HOME_PATH,      <Home />,       { pageType: 'flex-page' }) }
                 { route(ABOUT_PATH,     <About />,      { pageType: 'flex-page' }) }
                 { route(SUPPORT_PATH,   <Support />,    { pageType: 'flex-page' }) }
-                { route(STATS_PATH,     <Stats />,      { pageType: 'flex-page', authRequired: true }) }
+                { route(STATS_PATH,     <Stats />,      { pageType: 'page', authRequired: true }) }
                 { route(SETTINGS_PATH,  <Settings />,   { pageType: 'page' }) }
             </Routes>
         </BrowserRouter>

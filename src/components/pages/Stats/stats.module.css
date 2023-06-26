@@ -1,4 +1,4 @@
-.chartContainer {
+.lineGraphContainer {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -6,4 +6,10 @@
     margin-top: 2rem;
     overflow-x: auto;
     overflow-y: hidden;
-}
+};
+
+.pieChartContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+};

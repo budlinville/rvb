@@ -26,17 +26,17 @@ export const App = () => {
 
     return (
         <React.StrictMode>
-            <AmplifyProvider>
-                <ThemeProvider theme={ isDarkMode ? dark : light }>
-                    <ContextProvider>
-                        <CountFetcher>
-                            <Background>
-                                <Router />
-                            </Background>
-                        </CountFetcher>
-                    </ContextProvider>
-                </ThemeProvider>
-            </AmplifyProvider>
+                <AmplifyProvider>
+                    <ThemeProvider theme={ isDarkMode ? dark : light }>
+                        <ContextProvider>
+                            <CountFetcher>
+                                <Background>
+                                    <Router />
+                                </Background>
+                            </CountFetcher>
+                        </ContextProvider>
+                    </ThemeProvider>
+                </AmplifyProvider>
         </React.StrictMode>
     );
 };
