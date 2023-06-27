@@ -9,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 
 import { HOME_PATH } from '../pages/Home';
+import { PROFILE_PATH } from '../pages/Profile';
 import { AppContext } from '../ContextProvider';
 
 import logo from '/rvb.png';
@@ -22,6 +23,11 @@ const ProfileMenu = () => {
 
     const onOpenHandler = (e: rMouseEvent<HTMLButtonElement>) => setAnchorEl(e.currentTarget);
     const onCloseHandler = () => setAnchorEl(null);
+
+    const onProfileClickHandler = () => {
+        navigate(PROFILE_PATH);
+    };
+
     const onLogoutHandler = () => {
         Auth.signOut();
         navigate(HOME_PATH);
@@ -40,7 +46,7 @@ const ProfileMenu = () => {
                 open        ={ !!anchorEl} sx={{ x: 2 } }
                 onClose     ={ onCloseHandler }
             >
-                <MenuItem> { userDetails?.email } </MenuItem>
+                <MenuItem onClick={onProfileClickHandler}> { userDetails?.email } </MenuItem>
                 <Divider />
                 <MenuItem onClick={ onLogoutHandler }>
                     Logout

@@ -10,6 +10,7 @@ import Support, { SUPPORT_PATH } from './components/pages/Support';
 import Stats, { STATS_PATH } from './components/pages/Stats';
 import Settings, { SETTINGS_PATH } from './components/pages/Settings';
 import Login, { LOGIN_PATH } from './components/pages/Login';
+import Profile, { PROFILE_PATH } from './components/pages/Profile';
 
 
 interface PageOptionsT {
@@ -47,10 +48,11 @@ const Router = () => {
             <Routes>
                 { route(LOGIN_PATH,     <Login />) }
                 { route(HOME_PATH,      <Home />,       { pageType: 'flex-page' }) }
-                { route(ABOUT_PATH,     <About />,      { pageType: 'flex-page' }) }
+                { route(ABOUT_PATH,     <About />,      { pageType: 'page' }) }
                 { route(SUPPORT_PATH,   <Support />,    { pageType: 'flex-page' }) }
                 { route(STATS_PATH,     <Stats />,      { pageType: 'page', authRequired: true }) }
                 { route(SETTINGS_PATH,  <Settings />,   { pageType: 'page' }) }
+                { route(PROFILE_PATH,   <Profile />,    { pageType: 'page' }) }
             </Routes>
         </BrowserRouter>
     );

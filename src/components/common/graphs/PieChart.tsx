@@ -27,9 +27,9 @@ const RvbPieChart = ({ data, height }: Props) => {
             cy="50%"
             outerRadius={80}
             label={ ({ value, name}) => `${name.toUpperCase()}: ${value}` }
-            stroke='rgb(255, 222, 35)'
+            stroke='#ccc'
             strokeWidth={2}
-            labelLine={{ stroke: "yellow" }}
+            labelLine={{ stroke: 'transparent' }}
         >
             {data.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={entry.color} />

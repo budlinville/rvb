@@ -10,10 +10,11 @@ import RVB_API from "../../../api/sources";
 import LineGraph, { ClickDataT } from "../../common/graphs/LineGraph";
 import { AppContext, CountsT } from "../../ContextProvider";
 
-import classes from './stats.module.css';
 import useWindowWidth from "../../../hooks/useWindowWidth";
 import useWindowHeight from "../../../hooks/useWindowHeight";
 import PieChart from "../../common/graphs/PieChart";
+
+import classes from './stats.module.css';
 
 
 interface HourlyClicksT {
