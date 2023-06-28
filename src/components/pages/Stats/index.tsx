@@ -15,6 +15,7 @@ import useWindowHeight from "../../../hooks/useWindowHeight";
 import PieChart from "../../common/graphs/PieChart";
 
 import classes from './stats.module.css';
+import { count } from "console";
 
 
 interface HourlyClicksT {
@@ -87,13 +88,19 @@ const Stats = () => {
                 <Typography variant="h3" component="div"> Stats </Typography>
                 <Divider />
 
+                <Typography variant='h5'>Red VS Blue</Typography>
+                <Divider />
                 <div className={classes.pieChartContainer}>
                     <PieChart data={pieData} height={300} />
                 </div>
 
+                <Divider />
+                <Typography variant='h5'>Over time...</Typography>
+                <Divider />
                 <div className={classes.lineGraphContainer}>
                     <LineGraph data={lineData} height={400} width={ onMobile ? 600 : '80%' } />
                 </div>
+                <div style={{ height: '2rem' }}/>
             </Box>
         </Container>
     );

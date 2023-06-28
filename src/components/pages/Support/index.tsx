@@ -10,7 +10,6 @@ const Support = () => {
             <Box sx={{ my: 2 }}>
                 <Typography variant="h3" component="div"> Support </Typography>
                 <Divider />
-                    
             </Box>
         </Container>
     );

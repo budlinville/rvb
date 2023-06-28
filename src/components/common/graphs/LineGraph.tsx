@@ -50,8 +50,8 @@ const LineGraph = ({ data, height, width }: Props) => {
                 <YAxis />
                 <Tooltip labelFormatter={labelFormatter} contentStyle={tooltipStyle} />
                 {/* <Legend /> */}
-                <Line type='monotone' dataKey='redClicks' stroke={RED} name='Red' />
-                <Line type='monotone' dataKey='blueClicks' stroke={BLUE} name='Blue' />
+                <Line type='monotone' dataKey='redClicks' stroke={RED} name='Red' dot={false} />
+                <Line type='monotone' dataKey='blueClicks' stroke={BLUE} name='Blue' dot={false} />
             </LineChart>
         </ResponsiveContainer>
     );

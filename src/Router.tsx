@@ -49,7 +49,7 @@ const Router = () => {
                 { route(LOGIN_PATH,     <Login />) }
                 { route(HOME_PATH,      <Home />,       { pageType: 'flex-page' }) }
                 { route(ABOUT_PATH,     <About />,      { pageType: 'page' }) }
-                { route(SUPPORT_PATH,   <Support />,    { pageType: 'flex-page' }) }
+                {/* { route(SUPPORT_PATH,   <Support />,    { pageType: 'flex-page' }) } */}
                 { route(STATS_PATH,     <Stats />,      { pageType: 'page', authRequired: true }) }
                 { route(SETTINGS_PATH,  <Settings />,   { pageType: 'page' }) }
                 { route(PROFILE_PATH,   <Profile />,    { pageType: 'page' }) }
@@ -59,4 +59,3 @@ const Router = () => {
 };
 
 export default Router;
-
