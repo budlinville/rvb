@@ -1,13 +1,13 @@
 :root {
     --BUTTON-HEIGHT: 80%;
-    --BUTTON-WIDTH: 60%;
+    --BUTTON-WIDTH: 40%;
     --BUTTON-OFFSET: 18px;
     --BORDER-RADIUS: 20%;
 }
 
 @media only screen and (orientation: portrait) {
     :root {
-        --BUTTON-HEIGHT: 60%;
+        --BUTTON-HEIGHT: 40%;
         --BUTTON-WIDTH: 80%;
     }
 }

@@ -32,7 +32,7 @@ const NeutralTeamInfo = ({style}: { style: CSSProperties}) => {
                 You have yet to commit yourself to a side.
             </Typography>
             <Typography variant='body1'>
-                Listen up, my friend. Neutrality might seem like a safe haven, a cozy spot where you can avoid the chaos and conflict of taking a stand. But let me tell you, it's a slippery slope that leads to a bland existence. Picture yourself in a sea of opinions, surrounded by people who are passionately debating and defending their beliefs. And what do you do? You choose neutrality. You become the Switzerland of the conversation, the beige wallpaper in a room full of vibrant personalities. Where's the fun in that? Taking a side is like strapping yourself into a roller coaster—terrifying, exhilarating, and definitely not for the faint-hearted. Sure, there might be disagreements, occasional heated arguments, and the occasional awkward family dinner, but hey, at least you're part of the action. Neutrality, on the other hand, is like trying to dance to a beat that doesn't exist. You're left standing alone on the dance floor, awkwardly shuffling your feet while others waltz and tango to the rhythm of life. So, my friend, shed that cloak of neutrality and dive headfirst into the vibrant world of opinions and convictions. Embrace the exhilaration, the camaraderie, and yes, even the occasional intellectual battles. Life is too short to be a wallflower. So, pick a side, let your voice be heard, and join the wild ride of passionate existence. And hey, if all else fails, at least you'll have some great stories to tell at parties.
+                Listen up, my friend. Neutrality might seem like a safe haven, a cozy spot where you can avoid the chaos and conflict of taking a stand. But let me tell you, it's a slippery slope that leads to a bland existence. You exist in a sea of opinions, surrounded by people who are passionately debating and defending their beliefs. And what have you decided to do thus far? You choose neutrality. You become the Switzerland of the conversation, the beige wallpaper in a room full of vibrant personalities. Where's the fun in that? Taking a side is like strapping yourself into a roller coaster—terrifying, exhilarating, and definitely not for the faint-hearted. Sure, there might be disagreements, occasional heated arguments, and the occasional awkward family dinner, but hey, at least you're part of the action. Neutrality, on the other hand, is like trying to dance to a beat that doesn't exist. You're left standing alone on the dance floor, awkwardly shuffling your feet while others waltz and tango to the rhythm of life. So, my friend, shed that cloak of neutrality and dive headfirst into the vibrant world of opinions and convictions. Embrace the exhilaration, the camaraderie, and yes, even the occasional intellectual battles. Life is too short to be a wallflower. So, pick a side, let your voice be heard, and join the wild ride of passionate existence. And hey, if all else fails, at least you'll have some great stories to tell at parties.
             </Typography>
         </div>
     );
@@ -44,7 +44,7 @@ const TeamInfo = ({ red, blue }: TeamInfoProps) => {
     const colorMappings = {
         [`${TeamT.red}`]: getComputedStyle(document.body).getPropertyValue('--RED'),
         [`${TeamT.blue}`]: getComputedStyle(document.body).getPropertyValue('--BLUE'),
-        [`${TeamT.neutral}`]: '#ccc',
+        [`${TeamT.neutral}`]: '#999',
     };
 
     const { team, opposition } = getTeam(red, blue);
@@ -52,7 +52,7 @@ const TeamInfo = ({ red, blue }: TeamInfoProps) => {
 
     const style={
         border: `2px solid ${color}`,
-        background: `linear-gradient(to bottom, ${color} -50%, transparent 200%)`
+        background: `linear-gradient(to bottom, ${color} -50%, transparent 250%)`
     };
 
     if (team === TeamT.neutral) {

@@ -36,7 +36,7 @@ const RvbPieChart = ({ data, height }: Props) => {
     return (
         <div style={{ overflow: "hidden", width: '100%' }}>
         <style>{`.recharts-wrapper { margin: 0 auto !important; }`}</style>
-            <PieChart height={height} width={width}>
+            <PieChart height={height} width={250}>
                 <Pie
                     data={data}
                     dataKey="value"
