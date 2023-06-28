@@ -10,13 +10,57 @@ import {
 import { useLocalStorage } from "usehooks-ts";
 
 import { DARK_MODE } from "../../../local-storage/keys";
+import { CountsT } from "../../ContextProvider";
 
+//----------------------------------------------------------------------------------------------------------------------
+// Type Definitions
+//----------------------------------------------------------------------------------------------------------------------
 export interface ClickDataT {
     ts: number  // epoch time,
     redClicks: number,
     blueClicks: number,
 }
 
+export interface HourlyClicksT {
+    [epochTs: number]: {
+        red: number,
+        blue: number
+    }
+};
+
+
+//----------------------------------------------------------------------------------------------------------------------
+// Data Formatter
+//----------------------------------------------------------------------------------------------------------------------
+export const formatLineData = (hourlyClicks: HourlyClicksT, currentCounts: CountsT): ClickDataT[] => {
+    // Format historical data
+    const data = Object.entries(hourlyClicks).reduce<ClickDataT[]>((acc, [ts, clicks]) => {
+        const dataItem: ClickDataT = {
+            ts: Number(ts),
+            redClicks: clicks?.red,
+            blueClicks: clicks?.blue,
+        }
+        acc.push(dataItem);
+        return acc;
+    }, [] as ClickDataT[]);
+    data.sort((a,b) => a.ts - b.ts);
+
+    // Add current click data
+    if (currentCounts?.red && currentCounts?.blue) {
+        const currentClickData: ClickDataT = {
+            ts: new Date().getTime(),
+            redClicks: currentCounts?.red,
+            blueClicks: currentCounts?.blue,
+        }
+        data.push(currentClickData);
+    }
+
+    return data;
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// Component
+//----------------------------------------------------------------------------------------------------------------------
 interface Props {
     data: ClickDataT[],
     height: number | string,
@@ -41,7 +85,6 @@ const LineGraph = ({ data, height, width }: Props) => {
         ? { backgroundColor: '#222', color: '#fff', border: '1px solid #fff' }
         : { backgroundColor: '#fff', color: '#333', border: '1px solid #333' };
 
-    // TODO: Working here.. need to make this scrollable on mobile
     return (
         <ResponsiveContainer height={height} width={width}>
             <LineChart data={data}>

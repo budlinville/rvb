@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography"
 
 import { AppContext } from "../../ContextProvider";
 
+
 import classes from './profile.module.css';
 
 
@@ -81,8 +82,6 @@ const TeamInfo = ({ red, blue }: TeamInfoProps) => {
 
 const Profile = () => {
     const { userDetails, userCounts } = useContext(AppContext);
-
-    
     
     return (
         <Container>

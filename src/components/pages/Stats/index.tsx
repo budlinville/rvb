@@ -7,57 +7,14 @@ import Divider from '@mui/material/Divider';
 
 import API from '../../../api';
 import RVB_API from "../../../api/sources";
-import LineGraph, { ClickDataT } from "../../common/graphs/LineGraph";
-import { AppContext, CountsT } from "../../ContextProvider";
+import LineGraph, { ClickDataT, formatLineData, HourlyClicksT } from "../../common/graphs/LineGraph";
+import { AppContext } from "../../ContextProvider";
 
 import useWindowWidth from "../../../hooks/useWindowWidth";
 import useWindowHeight from "../../../hooks/useWindowHeight";
-import PieChart from "../../common/graphs/PieChart";
+import PieChart, { formatPieData } from "../../common/graphs/PieChart";
 
 import classes from './stats.module.css';
-import { count } from "console";
-
-
-interface HourlyClicksT {
-    [epochTs: number]: {
-        red: number,
-        blue: number
-    }
-};
-
-const formatLineData = (hourlyClicks: HourlyClicksT, currentCounts: CountsT): ClickDataT[] => {
-    // Format historical data
-    const data = Object.entries(hourlyClicks).reduce<ClickDataT[]>((acc, [ts, clicks]) => {
-        const dataItem: ClickDataT = {
-            ts: Number(ts),
-            redClicks: clicks?.red,
-            blueClicks: clicks?.blue,
-        }
-        acc.push(dataItem);
-        return acc;
-    }, [] as ClickDataT[]);
-    data.sort((a,b) => a.ts - b.ts);
-
-    // Add current click data
-    if (currentCounts?.red && currentCounts?.blue) {
-        const currentClickData: ClickDataT = {
-            ts: new Date().getTime(),
-            redClicks: currentCounts?.red,
-            blueClicks: currentCounts?.blue,
-        }
-        data.push(currentClickData);
-    }
-
-    return data;
-}
-
-const formatPieData = (counts: CountsT) => {
-    return Object.entries(counts).map(([key, value]) => ({
-        name: key,
-        value,
-        color: key,
-    }));
-}
 
 const Stats = () => {
     const [lineData, setLineData] = useState<ClickDataT[]>([]);
