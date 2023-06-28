@@ -82,8 +82,8 @@ const LineGraph = ({ data, height, width }: Props) => {
     }
 
     const tooltipStyle = isDarkMode
-        ? { backgroundColor: '#222', color: '#fff', border: '1px solid #fff' }
-        : { backgroundColor: '#fff', color: '#333', border: '1px solid #333' };
+        ? { backgroundColor: '#222', color: '#fff', border: '1px solid #fff', borderRadius: '0.5rem' }
+        : { backgroundColor: '#fff', color: '#333', border: '1px solid #333', borderRadius: '0.5rem' };
 
     return (
         <ResponsiveContainer height={height} width={width}>
