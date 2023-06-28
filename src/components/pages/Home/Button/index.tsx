@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useRef } from 'react';
 
 import classes from './button.module.css';
 import clickSound from '/click.mp3';
@@ -16,6 +16,8 @@ interface ButtonProps {
 };
 
 const Button = ({ children, color, onClick }: ButtonProps) => {
+    const buttonRef = useRef<HTMLButtonElement>(null);
+
     const colorClassName = color === 'red' ? classes.red : classes.blue;
 
     const onMouseDownHandler = async () => {
@@ -24,7 +26,7 @@ const Button = ({ children, color, onClick }: ButtonProps) => {
     };
 
     return (
-        <button className={classes.pushable} onMouseDown={onMouseDownHandler}>
+        <button ref={buttonRef} className={classes.pushable} onMouseDown={onMouseDownHandler}>
             <span className={`${ classes.shadow } ${ colorClassName }`} />
             <span className={`${ classes.edge } ${ colorClassName }`} />
             <span className={`${ classes.front } ${ colorClassName }`}>

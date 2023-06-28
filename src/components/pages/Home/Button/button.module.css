@@ -1,43 +1,14 @@
 :root {
-    --BUTTON-SIZE: 35rem;
-    --BUTTON-HEIGHT: var(--BUTTON-SIZE);
-    --BUTTON-WIDTH: var(--BUTTON-SIZE);
+    --BUTTON-HEIGHT: 80%;
+    --BUTTON-WIDTH: 60%;
     --BUTTON-OFFSET: 18px;
     --BORDER-RADIUS: 20%;
 }
 
-@media only screen and (max-width: 500px) {
-    /* CSS rules for mobile devices in portrait mode */
+@media only screen and (orientation: portrait) {
     :root {
-        --BUTTON-SIZE: 15rem;
-    }
-}
-
-@media only screen and (min-width: 501px) and (max-width: 900px) and (orientation: portrait) {
-    /* CSS rules for mobile devices in portrait mode */
-    :root {
-        --BUTTON-SIZE: 17rem;
-    }
-}
-
-@media only screen and (min-width: 501px) and (max-width: 900px) and (orientation: landscape) {
-    /* CSS rules for mobile devices in landscape mode */
-    :root {
-        --BUTTON-SIZE: 15rem;
-    }
-}
-
-@media only screen and (min-width: 901px) and (max-width: 1200px) and (orientation: portrait){
-    /* CSS rules for tablets and small screens in portrait mode*/
-    :root {
-        --BUTTON-SIZE: 26rem;
-    }
-}
-
-@media only screen and (min-width: 901px) and (max-width: 1200px) and (orientation: landscape) {
-    /* CSS rules for tablets and small screens in landscape mode */
-    :root {
-        --BUTTON-SIZE: 18rem;
+        --BUTTON-HEIGHT: 60%;
+        --BUTTON-WIDTH: 80%;
     }
 }
 
@@ -54,6 +25,7 @@
     transition: filter 250ms;
 
     -webkit-tap-highlight-color: transparent;
+    margin: 3rem;
 }
 
 .shadow {
@@ -110,8 +82,8 @@
 }
 
 .front {
-    height: var(--BUTTON-HEIGHT);
-    width: var(--BUTTON-WIDTH);
+    height: 100%;
+    width: 100%;
 
     display: flex;
     justify-content: center;
