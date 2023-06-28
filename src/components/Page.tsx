@@ -13,9 +13,12 @@ interface PageProps {
 };
 
 const Page = ({ children }: PageProps) => {
+    const pageHeight = useWindowHeight() - useHeaderHeight();
     return (
         <Header>
-            { children }
+            <div style={{ height: pageHeight, overflowY: 'scroll' }}>
+                { children }
+            </div>
         </Header>
     );
 }

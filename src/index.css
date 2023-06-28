@@ -40,5 +40,5 @@
 
 body {
     transition: var(--THEME-TRANSITION);
-    /* overflow-y: hidden; */
+    overflow-y: hidden;
 }
