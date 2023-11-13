@@ -7,8 +7,15 @@ const { DynamoDB } = require('aws-sdk');
 
 const dynamo = new DynamoDB.DocumentClient();
 
+//----------------------------------------------------------------------------------------------------------------------
+// Constats
+//----------------------------------------------------------------------------------------------------------------------
+
 const GLOBAL_ID = 'global';
 
+//----------------------------------------------------------------------------------------------------------------------
+// Database
+//----------------------------------------------------------------------------------------------------------------------
 
 const getColorCounts = async () => {
     const response = await dynamo.get({
@@ -19,7 +26,6 @@ const getColorCounts = async () => {
 
     return response.Item;
 };
-
 
 const updateHourlyColorCount = async (timestamp, red, blue) => {
     const response = await dynamo.update({
@@ -38,6 +44,9 @@ const updateHourlyColorCount = async (timestamp, red, blue) => {
     return response;
 }
 
+//----------------------------------------------------------------------------------------------------------------------
+// Helpers
+//----------------------------------------------------------------------------------------------------------------------
 
 // Strips minutes and seconds from Javascript Date and returns epoch timestamp string
 const toHourlyEpochTs = (date) => {
@@ -48,6 +57,9 @@ const toHourlyEpochTs = (date) => {
     return newDate.getTime().toString();
 };
 
+//----------------------------------------------------------------------------------------------------------------------
+// Handler
+//----------------------------------------------------------------------------------------------------------------------
 
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}

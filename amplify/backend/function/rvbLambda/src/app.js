@@ -6,39 +6,35 @@ or in the "license" file accompanying this file. This file is distributed on an 
 See the License for the specific language governing permissions and limitations under the License.
 */
 
-const express = require('express')
-const bodyParser = require('body-parser')
-const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware')
+const express       = require('express');
+const awsExpress    = require('aws-serverless-express/middleware');
+const db            = require('./db/click');
+const bodyParser    = require('body-parser');
 
-const db = require('./db/click');
+
+const app = express();
+app.use(bodyParser.json());
+app.use(awsExpress.eventContext());
+
+//----------------------------------------------------------------------------------------------------------------------
+// CORS
+//----------------------------------------------------------------------------------------------------------------------
+app.use((_, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "*");
+    next();
+});
 
 
+//----------------------------------------------------------------------------------------------------------------------
 // Constants
+//----------------------------------------------------------------------------------------------------------------------
 const GLOBAL_ID = 'global';
 
 
-// declare a new express app
-const app = express()
-app.use(bodyParser.json())
-app.use(awsServerlessExpressMiddleware.eventContext())
-
-// Enable CORS for all methods
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*")
-    res.header("Access-Control-Allow-Headers", "*")
-    next()
-});
-
-
-/**********************
- * Example get method *
- **********************/
-
-app.get('/rvb', function(req, res) {
-    // Add your code here
-    res.json({ success: 'get call succeed!', url: req.url });
-});
-
+//----------------------------------------------------------------------------------------------------------------------
+// Get
+//----------------------------------------------------------------------------------------------------------------------
 app.get('/rvb/clicks/user/:username', async (req, res, next) => {
     try {
         const username = req?.params?.username;
@@ -81,15 +77,9 @@ app.get('/rvb/clicks/hourly', async (req, res, next) => {
 });
 
 
-/****************************
-* Example post method *
-****************************/
-
-app.post('/rvb', function(req, res) {
-    // Add your code here
-    res.json({success: 'post call succeed!', url: req.url, body: req.body})
-});
-
+//----------------------------------------------------------------------------------------------------------------------
+// Post
+//----------------------------------------------------------------------------------------------------------------------
 app.post('/rvb/click/:color', async (req, res, next) => {
     try {
         const color = req.params.color;
@@ -132,44 +122,14 @@ app.post('/rvb/click/:color', async (req, res, next) => {
     }
 });
 
-app.post('/rvb/*', function(req, res) {
-    // Add your code here
-    res.json({success: 'post call succeed!', url: req.url, body: req.body})
-});
+//----------------------------------------------------------------------------------------------------------------------
+// Put
+//----------------------------------------------------------------------------------------------------------------------
 
-/****************************
-* Example put method *
-****************************/
+//----------------------------------------------------------------------------------------------------------------------
+// Delete
+//----------------------------------------------------------------------------------------------------------------------
 
-app.put('/rvb', function(req, res) {
-    // Add your code here
-    res.json({success: 'put call succeed!', url: req.url, body: req.body})
-});
+app.listen( 3000, () => console.log("App started") );
 
-app.put('/rvb/*', function(req, res) {
-    // Add your code here
-    res.json({success: 'put call succeed!', url: req.url, body: req.body})
-});
-
-/****************************
-* Example delete method *
-****************************/
-
-app.delete('/rvb', function(req, res) {
-    // Add your code here
-    res.json({success: 'delete call succeed!', url: req.url});
-});
-
-app.delete('/rvb/*', function(req, res) {
-    // Add your code here
-    res.json({success: 'delete call succeed!', url: req.url});
-});
-
-app.listen(3000, function() {
-    console.log("App started")
-});
-
-// Export the app object. When executing the application local this does nothing. However,
-// to port it to AWS Lambda we will create a wrapper around that will load the app from
-// this file
 module.exports = app

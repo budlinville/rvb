@@ -1,11 +1,19 @@
 const { CognitoIdentityServiceProvider, DynamoDB } = require('aws-sdk');
 
-const cognitoIdentityServiceProvider = new CognitoIdentityServiceProvider();
+const cognitoProvider = new CognitoIdentityServiceProvider();
 const dynamo = new DynamoDB.DocumentClient();
 
-const BATCH_LIMIT = 25;  // DynamoDB limit
 
 //----------------------------------------------------------------------------------------------------------------------
+// Constants
+//----------------------------------------------------------------------------------------------------------------------
+const BATCH_LIMIT = 25;  // DynamoDB limit
+
+
+//----------------------------------------------------------------------------------------------------------------------
+// Helpers
+//----------------------------------------------------------------------------------------------------------------------
+
 // Strips minutes and seconds from Javascript Date and returns epoch timestamp string
 const toHourlyEpochTs = (date) => {
     const newDate = new Date(date)
@@ -15,8 +23,14 @@ const toHourlyEpochTs = (date) => {
     return newDate.getTime().toString();
 };
 
+
 //----------------------------------------------------------------------------------------------------------------------
+// Database
+//----------------------------------------------------------------------------------------------------------------------
+
+
 const getColorCounts = async (username) => {
+    const response = await dynamo.get({
         TableName: 'rvb-click',
         Key: { id: username },
         ProjectionExpression: ['red', 'blue']
@@ -26,7 +40,6 @@ const getColorCounts = async (username) => {
     return response.Item;
 };
 
-//----------------------------------------------------------------------------------------------------------------------
 const updateHourlyColorCount = async (timestamp, items) => {
     // Params for Batch Write
     const params = {
@@ -60,6 +73,11 @@ const updateHourlyColorCount = async (timestamp, items) => {
     }
 }
 
+
+//----------------------------------------------------------------------------------------------------------------------
+// Handler
+//----------------------------------------------------------------------------------------------------------------------
+
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
@@ -80,7 +98,7 @@ exports.handler = async () => {
             };
 
             // Fetch Batch of Cognito users
-            const response = await cognitoIdentityServiceProvider.listUsers(params).promise();
+            const response = await cognitoProvider.listUsers(params).promise();
             const usernames  = response.Users.map(user => user.Username);
             paginationToken = response.PaginationToken; // Update the pagination token for the next iteration
 
