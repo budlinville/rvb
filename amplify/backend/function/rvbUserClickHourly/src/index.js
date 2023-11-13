@@ -17,14 +17,11 @@ const toHourlyEpochTs = (date) => {
 
 //----------------------------------------------------------------------------------------------------------------------
 const getColorCounts = async (username) => {
-    console.log('_ABLYY', username)
-    const response = await dynamo.get({
         TableName: 'rvb-click',
         Key: { id: username },
         ProjectionExpression: ['red', 'blue']
     }).promise();
 
-    console.log('_ABLZZ', response)
 
     return response.Item;
 };
@@ -56,10 +53,6 @@ const updateHourlyColorCount = async (timestamp, items) => {
     }
 
     try {
-        console.log('_ABL2', params)
-        console.log('_ABL3', params.RequestItems)
-        console.log('_ABL4', params.RequestItems['rvb-click'])
-        console.log('_ABL5', params.RequestItems['rvb-click'][0].UpdateRequest.ExpressionAttributeValues)
         await dynamo.batchWrite(params).promise();
     } catch (error) {
         console.error('Error updating hourly color count:', error);
@@ -92,17 +85,13 @@ exports.handler = async () => {
             paginationToken = response.PaginationToken; // Update the pagination token for the next iteration
 
             const items = [];
-            console.log('_ABL00', usernames)
             for (const username of usernames) {
                 const colorCounts = await getColorCounts(username);
-                console.log('_ABL0', colorCounts)
                 items.push({
                     username,
                     counts: colorCounts,
                 })
             }
-
-            console.log('_ABL1', items)
 
             await updateHourlyColorCount(hourlyEpoch, items);
         } while (paginationToken);
