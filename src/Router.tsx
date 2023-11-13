@@ -6,7 +6,6 @@ import { PageT, withFlexPage, withPage } from './components/Page';
 
 import Home, { HOME_PATH } from './components/pages/Home';
 import About, { ABOUT_PATH } from './components/pages/About';
-import Support, { SUPPORT_PATH } from './components/pages/Support';
 import Stats, { STATS_PATH } from './components/pages/Stats';
 import Settings, { SETTINGS_PATH } from './components/pages/Settings';
 import Login, { LOGIN_PATH } from './components/pages/Login';

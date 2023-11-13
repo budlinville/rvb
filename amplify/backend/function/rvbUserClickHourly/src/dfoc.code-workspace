@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../../dfoc"
+		},
+		{
+			"path": "../../../../../../vite-react-template"
+		},
+		{
+			"path": "../../../../../../vite-react-mui-template"
+		},
+		{
+			"path": "../../../../.."
+		}
+	],
+	"settings": {}
+}

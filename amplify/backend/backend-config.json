@@ -60,6 +60,12 @@
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
+    },
+    "rvbUserClickHourly": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "parameters": {
@@ -92,6 +98,22 @@
         {
           "category": "function",
           "resourceName": "rvbLambda"
+        }
+      ]
+    },
+    "AMPLIFY_function_rvbUserClickHourly_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "rvbUserClickHourly"
+        }
+      ]
+    },
+    "AMPLIFY_function_rvbUserClickHourly_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "rvbUserClickHourly"
         }
       ]
     }

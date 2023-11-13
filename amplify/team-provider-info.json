@@ -18,11 +18,15 @@
       "function": {
         "rvbLambda": {
           "deploymentBucketName": "amplify-rvb-staging-165023-deployment",
-          "s3Key": "amplify-builds/rvbLambda-76746f36423043774f32-build.zip"
+          "s3Key": "amplify-builds/rvbLambda-5059594a666735777064-build.zip"
         },
         "rvbClickHourly": {
           "deploymentBucketName": "amplify-rvb-staging-165023-deployment",
           "s3Key": "amplify-builds/rvbClickHourly-68475762475941695353-build.zip"
+        },
+        "rvbUserClickHourly": {
+          "deploymentBucketName": "amplify-rvb-staging-165023-deployment",
+          "s3Key": "amplify-builds/rvbUserClickHourly-4a766d4136662b527a6d-build.zip"
         }
       },
       "api": {
