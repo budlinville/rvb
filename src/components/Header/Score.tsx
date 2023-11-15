@@ -58,8 +58,8 @@ const Score = ({ color }: Props) => {
                 color={badgeColor}
                 style={{ alignItems: color === 'red' ? 'flex-end' : 'flex-start' }}
             >
-                <Typography className={scoreClassName} variant='body2'> { countsDisplayValue.toLocaleString("en-US") } </Typography>
-                { userDetails && <Typography className={userScoreClassName} variant='body2'> ({ userCountsDisplayValue.toLocaleString("en-US") }) </Typography> }
+                <Typography className={scoreClassName} variant='body2'> { countsDisplayValue?.toLocaleString("en-US") } </Typography>
+                { userDetails && <Typography className={userScoreClassName} variant='body2'> ({ userCountsDisplayValue?.toLocaleString("en-US") }) </Typography> }
             </Badge>
         </div>
     );

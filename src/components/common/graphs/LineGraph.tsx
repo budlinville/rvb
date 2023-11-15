@@ -78,7 +78,7 @@ const LineGraph = ({ data, height, width }: Props) => {
         if (label === data[data.length - 1].ts) {
             return "Current";
           }
-        return new Date(label).toLocaleString()
+        return new Date(label)?.toLocaleString()
     }
 
     const tooltipStyle = isDarkMode

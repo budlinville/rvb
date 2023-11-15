@@ -18,15 +18,15 @@
       "function": {
         "rvbLambda": {
           "deploymentBucketName": "amplify-rvb-staging-165023-deployment",
-          "s3Key": "amplify-builds/rvbLambda-5059594a666735777064-build.zip"
+          "s3Key": "amplify-builds/rvbLambda-37384a6967356a626536-build.zip"
         },
         "rvbClickHourly": {
           "deploymentBucketName": "amplify-rvb-staging-165023-deployment",
-          "s3Key": "amplify-builds/rvbClickHourly-68475762475941695353-build.zip"
+          "s3Key": "amplify-builds/rvbClickHourly-79785536635656675a43-build.zip"
         },
         "rvbUserClickHourly": {
           "deploymentBucketName": "amplify-rvb-staging-165023-deployment",
-          "s3Key": "amplify-builds/rvbUserClickHourly-4a766d4136662b527a6d-build.zip"
+          "s3Key": "amplify-builds/rvbUserClickHourly-5a596e744c6e436d5457-build.zip"
         }
       },
       "api": {
