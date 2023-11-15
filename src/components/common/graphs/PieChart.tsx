@@ -32,7 +32,7 @@ interface Props {
 }
 
 const RvbPieChart = ({ data, height }: Props) => {
-    const width = useWindowWidth() * 0.8;
+    // const width = useWindowWidth() * 0.8;
     return (
         <div style={{ overflow: "hidden", width: '100%' }}>
         <style>{`.recharts-wrapper { margin: 0 auto !important; }`}</style>

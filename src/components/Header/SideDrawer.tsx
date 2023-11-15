@@ -9,7 +9,6 @@ import Divider from '@mui/material/Divider';
 
 import CottageIcon from '@mui/icons-material/Cottage';
 import ImportContactsIcon from '@mui/icons-material/ImportContacts';
-import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import ListItemText from '@mui/material/ListItemText';
 import List from '@mui/material/List';
@@ -17,7 +16,6 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 import { HOME_PATH } from '../pages/Home';
 import { ABOUT_PATH } from '../pages/About';
-import { SUPPORT_PATH } from '../pages/Support';
 import { STATS_PATH } from '../pages/Stats';
 import { SETTINGS_PATH } from '../pages/Settings';
 

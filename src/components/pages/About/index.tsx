@@ -1,12 +1,9 @@
-import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 
-import { SUPPORT_PATH } from '../Support';
 
-import classes from './about.module.css';
 import useWindowWidth from '../../../hooks/useWindowWidth';
 
 const About = () => {
