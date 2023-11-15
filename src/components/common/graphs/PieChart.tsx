@@ -1,5 +1,4 @@
 import { PieChart, Pie, Tooltip, Cell } from "recharts";
-import useWindowWidth from "../../../hooks/useWindowWidth";
 import { CountsT } from "../../ContextProvider";
 
 //----------------------------------------------------------------------------------------------------------------------
