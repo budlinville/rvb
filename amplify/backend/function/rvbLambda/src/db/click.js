@@ -3,6 +3,16 @@ const { DynamoDB } = require('aws-sdk');
 
 const dynamo = new DynamoDB.DocumentClient();
 
+//----------------------------------------------------------------------------------------------------------------------
+// Constants
+//----------------------------------------------------------------------------------------------------------------------
+const ENV_TABLE_MAP = {
+    staging: 'rvb-click',
+    master: 'rvb-click-prod',
+};
+
+const TABLE_NAME = ENV_TABLE_MAP[process.env.ENV];
+
 
 //----------------------------------------------------------------------------------------------------------------------
 // Queries
@@ -10,7 +20,7 @@ const dynamo = new DynamoDB.DocumentClient();
 
 const getHourlyColorCounts = async (userId) => {
     const response = await dynamo.get({
-        TableName:              'rvb-click',
+        TableName:              TABLE_NAME,
         Key:                    { id: userId },
         ProjectionExpression:   'clicks_hourly'
     }).promise();
@@ -24,7 +34,7 @@ const getHourlyColorCounts = async (userId) => {
 
 const updateColorCount = async (userId, color, value) => {
     const response = await dynamo.update({
-        TableName:                  'rvb-click',
+        TableName:                  TABLE_NAME,
         Key:                        { id: userId },
         UpdateExpression:           "ADD #color :color_value",
         ExpressionAttributeNames:   { '#color': color },
@@ -38,7 +48,7 @@ const updateColorCount = async (userId, color, value) => {
 
 const getColorCounts = async (userId) => {
     const response = await dynamo.get({
-        TableName:              'rvb-click',
+        TableName:              TABLE_NAME,
         Key:                    { id: userId },
         ProjectionExpression:   ['red', 'blue']
     }).promise();

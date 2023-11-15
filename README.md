@@ -26,3 +26,5 @@
 		npm install <package-name>
 
 - For instance, I had to run `npm install aws-sdk` to access DynamoDB
+
+### Make sure to create a new Dynamo DB instance

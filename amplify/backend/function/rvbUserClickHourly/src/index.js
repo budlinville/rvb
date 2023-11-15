@@ -9,6 +9,13 @@ const dynamo = new DynamoDB.DocumentClient();
 //----------------------------------------------------------------------------------------------------------------------
 const BATCH_LIMIT = 25;  // DynamoDB limit
 
+const ENV_TABLE_MAP = {
+    staging: 'rvb-click',
+    master: 'rvb-click-prod',
+};
+
+const TABLE_NAME = ENV_TABLE_MAP[process.env.ENV];
+
 
 //----------------------------------------------------------------------------------------------------------------------
 // Helpers
@@ -31,7 +38,7 @@ const toHourlyEpochTs = (date) => {
 
 const getColorCounts = async (username) => {
     const response = await dynamo.get({
-        TableName: 'rvb-click',
+        TableName: TABLE_NAME,
         Key: { id: username },
         ProjectionExpression: ['red', 'blue']
     }).promise();
@@ -44,15 +51,15 @@ const updateHourlyColorCount = async (timestamp, items) => {
     // Params for Batch Write
     const params = {
         RequestItems: {
-            'rvb-click': []
+            TABLE_NAME: []
         }
     };
 
     // Prepare each item for update
     for (let i = 0; i < items.length; i++) {
-        params.RequestItems['rvb-click'].push({
+        params.RequestItems[TABLE_NAME].push({
             UpdateRequest: {
-                TableName: 'rvb-click',
+                TableName: TABLE_NAME,
                 Key: { id: items[i].username },
                 UpdateExpression: `SET clicks_hourly.#ts = :colors`,
                 ExpressionAttributeNames: {

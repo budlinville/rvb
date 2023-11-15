@@ -13,13 +13,20 @@ const dynamo = new DynamoDB.DocumentClient();
 
 const GLOBAL_ID = 'global';
 
+const ENV_TABLE_MAP = {
+    staging: 'rvb-click',
+    master: 'rvb-click-prod',
+};
+
+const TABLE_NAME = ENV_TABLE_MAP[process.env.ENV];
+
 //----------------------------------------------------------------------------------------------------------------------
 // Database
 //----------------------------------------------------------------------------------------------------------------------
 
 const getColorCounts = async () => {
     const response = await dynamo.get({
-        TableName: 'rvb-click',
+        TableName: TABLE_NAME,
         Key: { id: GLOBAL_ID },
         ProjectionExpression: ['red', 'blue']
     }).promise();
@@ -29,7 +36,7 @@ const getColorCounts = async () => {
 
 const updateHourlyColorCount = async (timestamp, red, blue) => {
     const response = await dynamo.update({
-        TableName: 'rvb-click',
+        TableName: TABLE_NAME,
         Key: { id: GLOBAL_ID },
         UpdateExpression: 'SET clicks_hourly.#ts = :colors',
         ExpressionAttributeNames: {
@@ -64,7 +71,7 @@ const toHourlyEpochTs = (date) => {
 /**
  * @type {import('@types/aws-lambda').APIGatewayProxyHandler}
  */
-exports.handler = async (event) => {
+exports.handler = async () => {
     const hourlyEpoch = toHourlyEpochTs(new Date());
 
     const colorCounts = await getColorCounts();
