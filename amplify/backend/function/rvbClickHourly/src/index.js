@@ -18,7 +18,7 @@ const ENV_TABLE_MAP = {
     master: 'rvb-click-prod',
 };
 
-const TABLE_NAME = ENV_TABLE_MAP[process.env.ENV || 'staging'];
+const TABLE_NAME = ENV_TABLE_MAP[process?.env?.ENV || 'staging'];
 
 //----------------------------------------------------------------------------------------------------------------------
 // Database
