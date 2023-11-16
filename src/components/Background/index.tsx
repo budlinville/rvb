@@ -12,7 +12,7 @@ interface Props {
 
 
 const Background = ({ children }: Props) => {
-    const [isDarkMode, _] = useLocalStorage(DARK_MODE, false);
+    const [isDarkMode, _] = useLocalStorage(DARK_MODE, true);
 
     const white1 = '#fbfcf8';
     const white2 = '#fffefc';

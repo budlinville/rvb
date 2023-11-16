@@ -49,7 +49,7 @@ export const Header = ({
     const navigate = useNavigate();
     const headerAnchorRef = useRef<HTMLDivElement>(null);
     const headerHeight = useHeaderHeight();
-    const [isDarkMode, _d] = useLocalStorage(DARK_MODE, false);
+    const [isDarkMode, _d] = useLocalStorage(DARK_MODE, true);
 
     const headerLightRed = useMemo(() => getComputedStyle(document.body).getPropertyValue('--RED-HEADER-GRADIENT-LIGHT'), []);
     const headerLightBlue = useMemo(() => getComputedStyle(document.body).getPropertyValue('--BLUE-HEADER-GRADIENT-LIGHT'), []);
@@ -58,11 +58,9 @@ export const Header = ({
 
     const getHeaderGradient = (isRedTeam: boolean, isDarkMode: boolean) => {
         if (isDarkMode) {
-            if (isRedTeam) return headerDarkRed;
-            return headerDarkBlue;
+            return isRedTeam ? headerDarkRed : headerDarkBlue;
         } else {
-            if (isRedTeam) return headerLightRed;
-            return headerLightBlue;
+            return isRedTeam ? headerLightRed : headerLightBlue;
         }
     }
 

@@ -19,7 +19,7 @@ Amplify.configure(config);
 
 
 export const App = () => {
-    const [isDarkMode, _] = useLocalStorage(DARK_MODE, false);
+    const [isDarkMode, _] = useLocalStorage(DARK_MODE, true);
 
     if (isDarkMode)
         setAmplifyDarkMode();
