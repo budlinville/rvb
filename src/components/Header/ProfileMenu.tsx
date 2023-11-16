@@ -77,6 +77,7 @@ const ProfileMenu = () => {
                 onClick         ={ onOpenHandler }
                 aria-controls   ={ !!anchorEl ? 'basic-menu' : undefined }
                 aria-haspopup   ='true'
+                size            ='small'
             >
                 <Avatar src={logo} />
             </IconButton>

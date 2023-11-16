@@ -3,12 +3,19 @@
     --BUTTON-WIDTH: 40%;
     --BUTTON-OFFSET: 18px;
     --BORDER-RADIUS: 20%;
+    --FONT-SIZE: 3rem;
 }
 
 @media only screen and (orientation: portrait) {
     :root {
         --BUTTON-HEIGHT: 40%;
         --BUTTON-WIDTH: 80%;
+    }
+}
+
+@media only screen and (max-width: 700px) and (orientation: portrait) {
+    :root {
+        --FONT-SIZE: 2rem;
     }
 }
 
@@ -143,7 +150,7 @@
 }
 
 .textContainer {
-    font-size: 3rem;
+    font-size: var(--FONT-SIZE);
     font-family: Futura;
     font-weight: 600;
 }

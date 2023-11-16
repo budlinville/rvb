@@ -3,3 +3,10 @@
     padding: 1rem;
     color: white;
 }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}

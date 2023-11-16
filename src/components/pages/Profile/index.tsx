@@ -86,8 +86,10 @@ const Profile = () => {
     return (
         <Container>
             <Box sx={{ my: 2 }}>
-                <Typography variant='h4' component='div'> { userDetails?.email } </Typography>
-                <Typography variant='h6' component='div'> ( { userDetails?.username } ) </Typography>
+                <div className={classes.header}>
+                    <Typography variant='h4' component='div'> { userDetails?.email } </Typography>
+                    <Typography variant='h6' component='div'> ( { userDetails?.username } ) </Typography>
+                </div>
                 <Divider sx={{ my: 2 }}/>
                 <TeamInfo red={userCounts?.red} blue={userCounts?.blue}/>
             </Box>
