@@ -69,3 +69,23 @@
 .headerSideItemContainer.right {
     justify-content: flex-end;
 }
+
+.profileContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+
+    border: 1px solid #272727;
+    border-radius: 50rem;
+
+    padding-left: 1rem;
+}
+
+.profileContainer.red {
+    background: linear-gradient(to top right, #4d4d4d -10%, var(--DARKEST-RED) 120%);
+}
+
+.profileContainer.blue {
+    background: linear-gradient(to top right, #4d4d4d -10%, var(--DARKEST-BLUE) 120%);
+}

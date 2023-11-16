@@ -49,7 +49,7 @@ export const Header = ({
     const navigate = useNavigate();
     const headerAnchorRef = useRef<HTMLDivElement>(null);
     const headerHeight = useHeaderHeight();
-    const [isDarkMode, _d] = useLocalStorage(DARK_MODE, true);
+    const [isDarkMode, _] = useLocalStorage(DARK_MODE, true);
 
     const headerLightRed = useMemo(() => getComputedStyle(document.body).getPropertyValue('--RED-HEADER-GRADIENT-LIGHT'), []);
     const headerLightBlue = useMemo(() => getComputedStyle(document.body).getPropertyValue('--BLUE-HEADER-GRADIENT-LIGHT'), []);
@@ -94,7 +94,6 @@ export const Header = ({
                                 <MenuIcon />
                             </IconButton>
                         </div>
-
 
                         <div className={classes.titleContainer}>
                             <Score color='red'/>
