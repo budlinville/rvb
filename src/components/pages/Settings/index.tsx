@@ -8,9 +8,12 @@ import Typography from "@mui/material/Typography";
 
 import { DARK_MODE } from '../../../local-storage/keys';
 import { Divider } from '@mui/material';
+import { useContext } from 'react';
+import { AppContext } from '../../ContextProvider';
 
 const Settings = () => {
     const [isDarkTheme, setDarkTheme] = useLocalStorage(DARK_MODE, true);
+    const { soundOn, setSoundOn } = useContext(AppContext);
 
     return (
         <Container>
@@ -19,8 +22,14 @@ const Settings = () => {
                 <Divider />
                     <div className={classes.themeSwitchContainer}>
                         <Typography variant="h5" component="div"> LIGHT </Typography>
-                            <Switch checked={isDarkTheme} onChange={ () => setDarkTheme(prev => !prev) }/>
+                            <Switch checked={ isDarkTheme } onChange={ () => setDarkTheme(prev => !prev) }/>
                         <Typography variant="h5" component="div"> DARK </Typography>
+                    </div>
+
+                    <div className={classes.themeSwitchContainer}>
+                        <Typography variant="h5" component="div"> Sound On </Typography>
+                            <Switch checked={ soundOn } onChange={ () => setSoundOn(prev => !prev) }/>
+                        <Typography variant="h5" component="div"> Sound Off </Typography>
                     </div>
             </Box>
         </Container>

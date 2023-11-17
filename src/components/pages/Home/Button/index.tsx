@@ -1,7 +1,8 @@
-import { ReactNode, useRef } from 'react';
+import { ReactNode, useContext, useRef } from 'react';
 
 import classes from './button.module.css';
 import clickSound from '/click.mp3';
+import { AppContext } from '../../../ContextProvider';
 
 
 export type ColorT = 'red' | 'blue';
@@ -18,10 +19,12 @@ interface ButtonProps {
 const Button = ({ children, color, onClick }: ButtonProps) => {
     const buttonRef = useRef<HTMLButtonElement>(null);
 
+    const { soundOn } = useContext(AppContext);
+
     const colorClassName = color === 'red' ? classes.red : classes.blue;
 
     const onMouseDownHandler = async () => {
-        audio.play();
+        if (soundOn) audio.play();
         onClick();
     };
 

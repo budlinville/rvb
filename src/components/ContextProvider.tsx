@@ -14,11 +14,13 @@ export interface AppContextT {
     userCounts: CountsT,
     redClicks: number,
     blueClicks: number,
+    soundOn: boolean,
     setLoading: Dispatch<SetStateAction<boolean>>,
     setCounts: Dispatch<SetStateAction<CountsT>>
     setUserCounts: Dispatch<SetStateAction<CountsT>>
     setRedClicks: Dispatch<SetStateAction<number>>,
     setBlueClicks: Dispatch<SetStateAction<number>>,
+    setSoundOn: Dispatch<SetStateAction<boolean>>,
 };
 
 const initialAppContext: AppContextT = {
@@ -28,11 +30,13 @@ const initialAppContext: AppContextT = {
     userCounts: initialCounts,
     redClicks: 0,
     blueClicks: 0,
+    soundOn: true,
     setLoading: () => {},
     setCounts: () => {},
     setUserCounts: () => {},
     setRedClicks: () => {},
     setBlueClicks: () => {},
+    setSoundOn: () => {},
 };
 
 export const AppContext = createContext<AppContextT>(initialAppContext);
@@ -46,10 +50,13 @@ const ContextProvider = ({ children }: ContextProviderProps) => {
     const [loading, setLoading] = useState<boolean>(false);
     const [counts, setCounts] = useState<CountsT>(initialCounts);
     const [userCounts, setUserCounts] = useState<CountsT>(initialCounts);
+    const [soundOn, setSoundOn] = useState<boolean>(true);
 
     const userDetails = useAuth();
+    
     const [redClicks, setRedClicks] = useClicks('red', userDetails, setCounts, setUserCounts);
     const [blueClicks, setBlueClicks] = useClicks('blue', userDetails, setCounts, setUserCounts);
+
 
     const value = {
         userDetails,
@@ -58,11 +65,13 @@ const ContextProvider = ({ children }: ContextProviderProps) => {
         userCounts,
         redClicks,
         blueClicks,
+        soundOn,
         setLoading,
         setCounts,
         setUserCounts,
         setRedClicks,
-        setBlueClicks
+        setBlueClicks,
+        setSoundOn,
     };
 
     return (
