@@ -7,14 +7,15 @@ import IconButton from "@mui/material/IconButton";
 import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import Typography from '@mui/material/Typography';
 
 import { HOME_PATH } from '../pages/Home';
 import { PROFILE_PATH } from '../pages/Profile';
 import { AppContext } from '../ContextProvider';
+import classNames from '../../utils/classNames';
 
 import logo from '/rvb.png';
 import classes from './header.module.css';
-import Typography from '@mui/material/Typography';
 
 
 const ProfileMenu = () => {
@@ -28,22 +29,35 @@ const ProfileMenu = () => {
     //------------------------------------------------------------------------------------------------------------------
     const { userDetails, userCounts } = useContext(AppContext)
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-    const [userCountsDisplayValue, setUserCountsDisplayValue] = useState<{red: number, blue: number}>(userCounts);
-    const [userScoreTransitioning, setUserScoreTransitioning] = useState(false);
+
+    const [redCountDisplayValue, setRedCountsDisplayValue] = useState<number>(userCounts?.red);
+    const [redCountTransitioning, setRedCountTransitioning] = useState(false);
+
+    const [blueCountDisplayValue, setBlueCountsDisplayValue] = useState<number>(userCounts?.blue);
+    const [blueCountTransitioning, setBlueCountTransitioning] = useState(false);
 
     //------------------------------------------------------------------------------------------------------------------
     // Effects
     //------------------------------------------------------------------------------------------------------------------
     useEffect(() => {
-        setUserScoreTransitioning(true);
-        setTimeout(() => setUserCountsDisplayValue(userCounts), scoreTransitionMilliseconds);
-        setTimeout(() => setUserScoreTransitioning(false), scoreTransitionMilliseconds * 2);
-    }, [userCounts])
+        setRedCountTransitioning(true);
+        setTimeout(() => setRedCountsDisplayValue(userCounts?.red), scoreTransitionMilliseconds);
+        setTimeout(() => setRedCountTransitioning(false), scoreTransitionMilliseconds * 2);
+    }, [userCounts?.red])
+
+    useEffect(() => {
+        setBlueCountTransitioning(true);
+        setTimeout(() => setBlueCountsDisplayValue(userCounts?.blue), scoreTransitionMilliseconds);
+        setTimeout(() => setBlueCountTransitioning(false), scoreTransitionMilliseconds * 2);
+    }, [userCounts?.blue])
 
     //------------------------------------------------------------------------------------------------------------------
     // Styling
     //------------------------------------------------------------------------------------------------------------------
-    const userScoreClassName = userScoreTransitioning ? classes.scoreTransition : classes.score;
+    const userScoreClassName = (color: string, transitioning: boolean) => classNames(
+        transitioning ? classes.scoreTransition : classes.score,
+        (color === 'red') ? classes.red : classes.blue
+    );
     const profileContainerClassName = `${classes.profileContainer} ${userCounts.red > userCounts.blue ? classes.red : classes.blue}`;
 
     //------------------------------------------------------------------------------------------------------------------
@@ -66,11 +80,11 @@ const ProfileMenu = () => {
     return (
         <div className={profileContainerClassName}>
             <div className={classes.userCountContainer}>
-                <Typography className={ userScoreClassName } variant='body2'>
-                    { userCountsDisplayValue?.red?.toLocaleString("en-US") }
+                <Typography className={ userScoreClassName( 'red', redCountTransitioning ) } variant='body2'>
+                    { redCountDisplayValue?.toLocaleString("en-US") }
                 </Typography>
-                <Typography className={ userScoreClassName } variant='body2'>
-                    { userCountsDisplayValue?.blue?.toLocaleString("en-US") }
+                <Typography className={ userScoreClassName( 'blue', blueCountTransitioning ) } variant='body2'>
+                    { blueCountDisplayValue?.toLocaleString("en-US") }
                 </Typography>
             </div>
             <IconButton

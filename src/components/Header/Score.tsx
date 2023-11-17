@@ -6,6 +6,7 @@ import { AppContext } from "../ContextProvider";
 import { ColorT } from "../pages/Home/Button"
 
 import classes from './header.module.css';
+import classNames from "../../utils/classNames";
 
 interface Props {
     color: ColorT,
@@ -36,8 +37,11 @@ const Score = ({ color }: Props) => {
         setTimeout(() => setScoreTransitioning(false), scoreTransitionMilliseconds * 2);
     }, [count]);
 
-    const containerClassName = `${classes.scoreContainer} ${classes[color]}`;
-    const scoreClassName = scoreTransitioning ? classes.scoreTransition : classes.score;
+    const containerClassName = classNames(classes.scoreContainer, classes[color]);
+    const scoreClassName = classNames(
+        scoreTransitioning ? classes.scoreTransition : classes.score,
+        classes[color],
+    );
 
     return (
         <div className={containerClassName}>
@@ -46,7 +50,7 @@ const Score = ({ color }: Props) => {
                 color={badgeColor}
                 style={{ alignItems: color === 'red' ? 'flex-end' : 'flex-start' }}
             >
-                <Typography className={scoreClassName} variant='body2'>
+                <Typography className={scoreClassName} variant='h6'>
                     { countsDisplayValue?.toLocaleString("en-US") }
                 </Typography>
             </Badge>

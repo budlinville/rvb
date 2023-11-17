@@ -68,7 +68,6 @@ export const Header = ({
         const isRedTeam = userRed > userBlue;
         const headerCSS = getHeaderGradient(isRedTeam, isDarkMode);
         document.body.style.setProperty('--HEADER-GRADIENT', headerCSS);
-
     }, [isDarkMode, userRed, userBlue]);
 
     // Event Handlers
