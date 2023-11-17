@@ -1,4 +1,4 @@
-import { CSSProperties, useContext, useEffect } from "react";
+import { CSSProperties, useContext } from "react";
 
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
