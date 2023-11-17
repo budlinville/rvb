@@ -10,3 +10,7 @@
     align-items: center;
     flex-direction: row;
 }
+
+.header.mobile {
+    flex-direction: column;
+}

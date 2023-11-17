@@ -1,4 +1,4 @@
-import { CSSProperties, useContext } from "react";
+import { CSSProperties, useContext, useEffect } from "react";
 
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
@@ -9,6 +9,8 @@ import { AppContext } from "../../ContextProvider";
 
 
 import classes from './profile.module.css';
+import useWindowHeight from "../../../hooks/useWindowHeight";
+import useWindowWidth from "../../../hooks/useWindowWidth";
 
 
 enum TeamT {
@@ -82,11 +84,17 @@ const TeamInfo = ({ red, blue }: TeamInfoProps) => {
 
 const Profile = () => {
     const { userDetails, userCounts } = useContext(AppContext);
+    const windowHeight = useWindowHeight();
+    const windowWidth = useWindowWidth();
+
+    const onMobile = windowHeight > windowWidth;
+
+    const profileClassname = `${classes.header} ${onMobile ? classes.mobile : ''}`;
     
     return (
         <Container>
             <Box sx={{ my: 2 }}>
-                <div className={classes.header}>
+                <div className={profileClassname}>
                     <Typography variant='h4' component='div'> { userDetails?.email } </Typography>
                     <Typography variant='h6' component='div'> ( { userDetails?.username } ) </Typography>
                 </div>
