@@ -45,7 +45,7 @@ const RvbPieChart = ({ data, height }: Props) => {
                     outerRadius={80}
                     label={ ({ value, name}) => `${name.toUpperCase()}: ${value}` }
                     stroke='#ccc'
-                    strokeWidth={2}
+                    strokeWidth={0.5}
                     labelLine={{ stroke: 'transparent' }}
                 >
                     {data.map((entry, index) => (
