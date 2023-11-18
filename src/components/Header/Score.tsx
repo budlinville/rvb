@@ -7,6 +7,8 @@ import { ColorT } from "../pages/Home/Button"
 
 import classes from './header.module.css';
 import classNames from "../../utils/classNames";
+import { DARK_MODE } from "../../local-storage/keys";
+import { useLocalStorage } from "usehooks-ts";
 
 interface Props {
     color: ColorT,
@@ -16,9 +18,12 @@ const Score = ({ color }: Props) => {
     const [scoreTransitioning, setScoreTransitioning] = useState(false);
     const {
         counts: { red, blue },
+        userCounts: { red: userRed, blue: userBlue },
         redClicks,
         blueClicks
     } = useContext(AppContext);
+
+    const [darkMode, _] = useLocalStorage(DARK_MODE, true);
 
     const scoreTransitionSeconds: string = getComputedStyle(document.body).getPropertyValue('--SCORE-TRANSITION-SECONDS');
     const scoreTransitionMilliseconds: number = Number(scoreTransitionSeconds.substring(0,3)) * 1000;
@@ -40,7 +45,8 @@ const Score = ({ color }: Props) => {
     const containerClassName = classNames(classes.scoreContainer, classes[color]);
     const scoreClassName = classNames(
         scoreTransitioning ? classes.scoreTransition : classes.score,
-        classes[color],
+        userRed > userBlue ? classes.red : classes.blue,
+        darkMode ? classes.dark : classes.light,
     );
 
     return (

@@ -64,11 +64,20 @@ export const Header = ({
         }
     }
 
+    //------------------------------------------------------------------------------------------------------------------
+    // Effects
+    //------------------------------------------------------------------------------------------------------------------
     useEffect(() => {
         const isRedTeam = userRed > userBlue;
         const headerCSS = getHeaderGradient(isRedTeam, isDarkMode);
         document.body.style.setProperty('--HEADER-GRADIENT', headerCSS);
     }, [isDarkMode, userRed, userBlue]);
+
+    useEffect(() => {
+        const isRedTeam = userRed > userBlue;
+        const headerCSS = getHeaderGradient(isRedTeam, isDarkMode);
+        document.body.style.setProperty('--HEADER-GRADIENT', headerCSS);
+    }, [userRed, userBlue]);
 
     // Event Handlers
     const onMenuClick = () => setDrawerOpen(true);

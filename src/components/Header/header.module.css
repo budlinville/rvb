@@ -46,17 +46,40 @@
 }
 
 .score {
-    color: white;
     text-shadow: none;
     transition: color var(--SCORE-TRANSITION-SECONDS) ease-out, text-shadow var(--SCORE-TRANSITION-SECONDS) ease-out;
 }
 
-.score.red {
+.score.red.light {
+    color: var(--RED-TEXT);
+    text-shadow: 1px 1px 0px var(--LIGHTEST-RED), -1px -1px 0px var(--DARKEST-RED);
+}
+
+.score.red.dark {
+    color: var(--RED-TEXT);
+    text-shadow: 1px 1px 0px var(--RED-TEXT-ACCENT-LIGHT), -1px -1px 0px var(--RED-TEXT-ACCENT-DARK);
+}
+
+.score.blue.light {
+    color: var(--BLUE-TEXT);
+    text-shadow: 1px 1px 0px var(--LIGHTEST-BLUE), -1px -1px 0px var(--DARKEST-BLUE);
+}
+
+.score.blue.dark {
+    color: var(--BLUE-TEXT);
+    text-shadow: 1px 1px 0px var(--BLUE-TEXT-ACCENT-LIGHT), -1px -1px 0px var(--BLUE-TEXT-ACCENT-DARK);
+}
+
+.profileScore {
+    transition: color var(--SCORE-TRANSITION-SECONDS) ease-out, text-shadow var(--SCORE-TRANSITION-SECONDS) ease-out;
+}
+
+.profileScore.red {
     color: var(--LIGHTEST-RED);
     text-shadow: 0 0 3px var(--DARKEST-RED);
 }
 
-.score.blue {
+.profileScore.blue {
     color: var(--LIGHTEST-BLUE);
     text-shadow: 0 0 8px var(--DARKEST-BLUE);
 }

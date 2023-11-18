@@ -20,7 +20,7 @@ import classes from './header.module.css';
 
 const ProfileMenu = () => {
     const navigate = useNavigate();
-    
+
     const scoreTransitionSeconds: string = getComputedStyle(document.body).getPropertyValue('--SCORE-TRANSITION-SECONDS');
     const scoreTransitionMilliseconds: number = Number(scoreTransitionSeconds.substring(0,3)) * 1000;
 
@@ -55,9 +55,12 @@ const ProfileMenu = () => {
     // Styling
     //------------------------------------------------------------------------------------------------------------------
     const userScoreClassName = (color: string, transitioning: boolean) => classNames(
-        transitioning ? classes.scoreTransition : classes.score,
-        (color === 'red') ? classes.red : classes.blue
+        classes.score,
+        classes.profileScore,
+        (color === 'red') ? classes.red : classes.blue,
+        transitioning && classes.scoreTransition || '',
     );
+
     const profileContainerClassName = `${classes.profileContainer} ${userCounts.red > userCounts.blue ? classes.red : classes.blue}`;
 
     //------------------------------------------------------------------------------------------------------------------
