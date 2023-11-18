@@ -85,8 +85,8 @@
 }
 
 .scoreTransition {
-    color: rgb(255, 222, 35);
-    text-shadow: rgb(255, 238, 144) 0 0 10px;
+    color: rgb(255, 222, 35) !important;
+    text-shadow: rgb(255, 238, 144) 0 0 10px !important;
     transition: color var(--SCORE-TRANSITION-SECONDS) ease-in, text-shadow var(--SCORE-TRANSITION-SECONDS) ease-in;
 }
 
