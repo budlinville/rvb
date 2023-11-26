@@ -77,7 +77,7 @@ const LineGraph = ({ data, height, width }: Props) => {
     const labelFormatter = (label: number) => {
         if (label === data[data.length - 1].ts) {
             return "Current";
-          }
+        }
         return new Date(label)?.toLocaleString()
     }
 
@@ -90,7 +90,7 @@ const LineGraph = ({ data, height, width }: Props) => {
             <LineChart data={data}>
                 <CartesianGrid strokeDasharray='3 3' />
                 <XAxis hide={true} dataKey='ts' type='number' scale='time' domain={['auto', 'auto']} />
-                <YAxis />
+                <YAxis orientation="right"/>
                 <Tooltip labelFormatter={labelFormatter} contentStyle={tooltipStyle} />
                 {/* <Legend /> */}
                 <Line type='monotone' dataKey='redClicks' stroke={RED} name='Red' dot={false} />

@@ -15,6 +15,7 @@ import useWindowHeight from "../../../hooks/useWindowHeight";
 import PieChart, { formatPieData } from "../../common/graphs/PieChart";
 
 import classes from './stats.module.css';
+import classNames from "../../../utils/classNames";
 
 const Stats = () => {
     const [lineData, setLineData] = useState<ClickDataT[]>([]);
@@ -39,25 +40,26 @@ const Stats = () => {
         fetchHourlyClicks();
     }, [counts]);
 
+    const graphContainerClassName = classNames(
+        classes.graphContainer,
+        onMobile && classes.mobile || '',
+    );
+
     return (
         <Container>
             <Box sx={{ my: 2 }}>
                 <Typography variant="h3" component="div"> Stats </Typography>
                 <Divider />
+                <div className={ graphContainerClassName }>
+                    <div className={ classes.pieChartContainer }>
+                        <PieChart data={ pieData } height={ 300 } />
+                    </div>
 
-                <Typography variant='h5'>Red VS Blue</Typography>
-                <Divider />
-                <div className={classes.pieChartContainer}>
-                    <PieChart data={pieData} height={300} />
+                    <div className={classes.lineGraphContainer}>
+                        <LineGraph data={ lineData } height={ 400 } width={ onMobile ? 600 : '80%' } />
+                    </div>
+                    <div style={{ height: '2rem' }}/>
                 </div>
-
-                <Divider />
-                <Typography variant='h5'>Over time...</Typography>
-                <Divider />
-                <div className={classes.lineGraphContainer}>
-                    <LineGraph data={lineData} height={400} width={ onMobile ? 600 : '80%' } />
-                </div>
-                <div style={{ height: '2rem' }}/>
             </Box>
         </Container>
     );

@@ -56,7 +56,7 @@ const Score = ({ color }: Props) => {
                 color={badgeColor}
                 style={{ alignItems: color === 'red' ? 'flex-end' : 'flex-start' }}
             >
-                <Typography className={scoreClassName} variant='h6'>
+                <Typography className={scoreClassName} variant='h4'>
                     { countsDisplayValue?.toLocaleString("en-US") }
                 </Typography>
             </Badge>
