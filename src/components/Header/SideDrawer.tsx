@@ -13,6 +13,7 @@ import ImportContactsIcon from '@mui/icons-material/ImportContacts';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import ListItemText from '@mui/material/ListItemText';
 import List from '@mui/material/List';
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 // import SettingsIcon from '@mui/icons-material/Settings';
 
 import { HOME_PATH } from '../pages/Home';
@@ -23,6 +24,9 @@ import { SETTINGS_PATH } from '../pages/Settings';
 
 
 //----------------------------------------------------------------------------------------------------------------------
+
+
+export const STORE_ROUTE = 'https://my-store-f09d8a.creator-spring.com/';
 
 
 interface DrawerPageT {
@@ -39,6 +43,8 @@ const menuItems: (DrawerPageT | DividerT)[] = [
     { id: 2, divider: true },
     { id: 3, label: 'Stats',    route: STATS_PATH,      icon: <AssessmentIcon /> },
     { id: 4, label: 'About',    route: ABOUT_PATH,      icon: <ImportContactsIcon /> },
+    { id: 5, divider: true},
+    { id: 6, label: 'Store', route: STORE_ROUTE,   icon: <LocalGroceryStoreIcon />}
     // { id: 5, label: 'Support',  route: SUPPORT_PATH,    icon: <AccessibilityNewIcon /> },
     // { id: 6, divider: true },
 ];

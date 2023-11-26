@@ -10,7 +10,7 @@ import Stats, { STATS_PATH } from './components/pages/Stats';
 import Settings, { SETTINGS_PATH } from './components/pages/Settings';
 import Login, { LOGIN_PATH } from './components/pages/Login';
 import Profile, { PROFILE_PATH } from './components/pages/Profile';
-
+import { STORE_ROUTE } from './components/Header/SideDrawer';
 
 interface PageOptionsT {
     pageType?: PageT,
@@ -52,6 +52,10 @@ const Router = () => {
                 { route(STATS_PATH,     <Stats />,      { pageType: 'page', authRequired: false }) }
                 { route(SETTINGS_PATH,  <Settings />,   { pageType: 'page' }) }
                 { route(PROFILE_PATH,   <Profile />,    { pageType: 'page' }) }
+                <Route path={STORE_ROUTE} Component={() => {
+                    window.location.href = 'https://my-store-f09d8a.creator-spring.com';
+                    return null;
+                }}/>
             </Routes>
         </BrowserRouter>
     );
